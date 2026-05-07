@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JustClose · Das Vertriebssystem für IT &amp; Software</title>
+  <meta name="description" content="Das Vertriebssystem für B2B-Software. Outbound, CRM, Pipeline-Coaching und SOPs als Accelerator." />
+  <meta name="theme-color" content="#0C2A4A" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==================================================================
+       JustClose · Magic-UI Design System
+       ================================================================== */
+    :root {
+      color-scheme: dark;
+      --background:  oklch(0% 0 0);
+      --foreground:  oklch(98% 0 0);
+      --jc-blue-50:  #E0F2FF;
+      --jc-blue-100: #BAE6FF;
+      --jc-blue-300: #9CECFC;
+      --jc-blue-400: #4D97FE;
+      --jc-blue-500: #0EA5E9;
+      --jc-blue-700: #0369A1;
+      --jc-blue-900: #0C2A4A;
+      --jc-deep:     #142F69;
+      --jc-space:    #050913;
+      --color-one:   var(--jc-blue-400);
+      --color-two:   var(--jc-blue-700);
+      --color-three: var(--jc-blue-100);
+      --primary:     oklch(98% 0 0);
+      --border:      oklch(35% 0 0);
+      --shimmer-width: 100px;
+      --border-beam-width: 1.5px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+    body { overflow-x: clip; }
+    main { display: block; max-width: 100%; overflow-x: clip; position: relative; isolation: isolate; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* ==================================================================
+       Backgrounds (continuity between sections via fixed-style fade)
+       ================================================================== */
+    .bg-radial-jc {
+      background:
+        radial-gradient(60% 50% at 50% 0%,    rgba(77,151,254,0.20) 0%, transparent 60%),
+        radial-gradient(45% 40% at 80% 30%,   rgba(3,105,161,0.30)  0%, transparent 60%),
+        radial-gradient(40% 50% at 20% 60%,   rgba(156,236,252,0.10) 0%, transparent 60%),
+        var(--jc-space);
+    }
+    .bg-radial-soft {
+      background:
+        radial-gradient(60% 80% at 50% 0%, rgba(77,151,254,0.10) 0%, transparent 60%),
+        radial-gradient(60% 80% at 50% 100%, rgba(3,105,161,0.10) 0%, transparent 60%),
+        #000;
+    }
+    .bg-grid {
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+    }
+
+    /* Section bridge — smooth transitions between sections */
+    .section-bridge {
+      position: relative;
+      height: 1px;
+      max-width: 720px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(77,151,254,0.45), transparent);
+      opacity: 0; transition: opacity 1.2s ease;
+    }
+    .section-bridge.is-revealed { opacity: 1; }
+    .section-bridge::before {
+      content: ''; position: absolute; left: 50%; top: 50%;
+      width: 80px; height: 80px; transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse, rgba(77,151,254,0.45) 0%, transparent 70%);
+      filter: blur(18px); pointer-events: none;
+    }
+    /* Comet-Effekt entfernt — nur noch der ruhige Glow als Bridge */
+
+    /* Smooth section fade-bands (top & bottom of bg-radial sections) */
+    .has-fade-top    { mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 100%); }
+    .has-fade-bottom { mask-image: linear-gradient(to top, transparent 0%, #000 7%, #000 100%);    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 7%, #000 100%); }
+    .has-fade-both   { mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%); }
+
+    /* ==================================================================
+       Layout
+       ================================================================== */
+    .max-c { max-width: 1200px; margin: 0 auto; }
+    section.sect       { position: relative; padding: 5rem 1.5rem; }
+    section.sect-tight { position: relative; padding: 3rem 1.5rem; }
+    section.sect-wide  { position: relative; padding: 6rem 1.5rem; }
+    .sect-h { text-align: center; max-width: 44rem; margin: 0 auto 3rem; }
+    .sect-h.wide { max-width: 56rem; }
+    .sect-h h2 { font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-top: 1.25rem; }
+    .sect-h p { color: rgba(255,255,255,0.6); margin-top: 1rem; line-height: 1.55; font-size: 1.0625rem; }
+
+    /* ==================================================================
+       Sticky Header
+       ================================================================== */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 0.95rem 1.5rem;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background .4s ease, border-color .4s ease, padding .35s ease, backdrop-filter .4s ease;
+      transform: translateY(-100%); opacity: 0;
+      animation: site-header-in .8s cubic-bezier(.4,0,.2,1) forwards 200ms;
+    }
+    @keyframes site-header-in { to { transform: translateY(0); opacity: 1; } }
+    /* Im Hero: komplett transparent — Hero-Glow scheint durch.
+       Nach Scroll: sanfter Glas-Layer mit Blur. */
+    .site-header.is-scrolled {
+      background: rgba(5, 9, 19, 0.55);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      border-bottom-color: rgba(77,151,254,0.14);
+      padding: 0.65rem 1.5rem;
+    }
+    .site-header__inner { width: 100%; max-width: 78rem; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.5rem; }
+    .site-header__logo {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.025em; color: #fff;
+      transition: opacity .2s ease;
+    }
+    .site-header__logo:hover { opacity: 0.88; }
+    .site-header__logo-img {
+      height: 28px; width: auto; display: block;
+      filter: drop-shadow(0 0 12px rgba(77,151,254,0.25));
+    }
+    .site-header__logo-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--jc-blue-300), var(--jc-blue-400));
+      box-shadow: 0 0 14px rgba(77,151,254,0.7);
+    }
+    .site-nav {
+      display: none; justify-content: center; gap: 2.25rem;
+      font-size: 0.875rem; color: rgba(255,255,255,0.72); font-weight: 500;
+    }
+    .site-nav a { position: relative; transition: color .2s ease; padding: 0.25rem 0; }
+    .site-nav a::after {
+      content: ''; position: absolute; left: 50%; bottom: -2px;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, var(--jc-blue-300), var(--jc-blue-400));
+      transform: translateX(-50%);
+      transition: width .25s cubic-bezier(.4,0,.2,1);
+    }
+    .site-nav a:hover { color: #fff; }
+    .site-nav a:hover::after { width: 100%; }
+    @media (min-width: 880px) { .site-nav { display: flex; } }
+
+    /* Header right side */
+    .site-header__right { display: flex; align-items: center; gap: 0.75rem; justify-self: end; }
+
+    /* Glass-Style Nav-CTA — dunkler transparenter Background, Shimmer beim Hover */
+    .nav-cta {
+      display: none; align-items: center; gap: 6px;
+      height: 38px; padding: 0 18px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(14px) saturate(150%);
+      -webkit-backdrop-filter: blur(14px) saturate(150%);
+      color: rgba(255,255,255,0.95);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.14);
+      transition: background .3s ease, border-color .3s ease, transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, color .3s ease;
+      position: relative; overflow: hidden;
+    }
+    .nav-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg, transparent 25%, rgba(156,236,252,0.22) 50%, transparent 75%);
+      background-size: 220% 100%;
+      background-position: 220% 0;
+      pointer-events: none;
+      transition: background-position .9s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-cta:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(186,230,255,0.45);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 0 24px -4px rgba(77,151,254,0.40), inset 0 1px 0 rgba(255,255,255,0.10);
+    }
+    .nav-cta:hover::before { background-position: -120% 0; }
+    .nav-cta svg { width: 14px; height: 8px; transition: transform .25s ease; position: relative; z-index: 1; }
+    .nav-cta:hover svg { transform: translateX(3px); }
+    .nav-cta > * { position: relative; z-index: 1; }
+    @media (min-width: 640px) { .nav-cta { display: inline-flex; } }
+
+    .menu-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px;
+      color: rgba(255,255,255,0.85);
+      border-radius: 8px;
+      transition: background .2s ease;
+    }
+    .menu-btn:hover { background: rgba(255,255,255,0.06); }
+    @media (min-width: 880px) { .menu-btn { display: none; } }
+
+    /* ==================================================================
+       Pills (Shimmer in JustClose-Blau)
+       ================================================================== */
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 0.95rem; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      background: rgba(77,151,254,0.10); border: 1px solid rgba(77,151,254,0.30); color: var(--jc-blue-100);
+      position: relative; overflow: hidden;
+    }
+    .pill::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.30) 50%, transparent 70%);
+      background-size: 200% 100%;
+      animation: shimmer 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .pill.cyan  { background: rgba(156,236,252,0.10); border-color: rgba(156,236,252,0.30); color: var(--jc-blue-300); }
+    .pill.deep  { background: rgba(40,100,201,0.14);  border-color: rgba(40,100,201,0.40);  color: var(--jc-blue-100); }
+    @keyframes shimmer {
+      0%, 90%, 100% { background-position: calc(-100% - var(--shimmer-width)) 0; }
+      30%, 60%      { background-position: calc(100%  + var(--shimmer-width)) 0; }
+    }
+
+    /* ==================================================================
+       Headline gradients
+       ================================================================== */
+    .text-wg-grad         { background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.55) 100%);
+                            -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .text-cyan-royal-grad { background: linear-gradient(120deg, var(--jc-blue-100) 0%, var(--jc-blue-300) 35%, var(--jc-blue-400) 100%);
+                            -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .text-cyan-deep-grad  { background: linear-gradient(120deg, var(--jc-blue-100) 0%, var(--jc-blue-300) 30%, var(--jc-blue-400) 60%, var(--jc-blue-700) 100%);
+                            -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* ==================================================================
+       Huly CTA · Cursor-Tracking-Glow (JS-driven)
+       ================================================================== */
+    .huly-cta-wrap { position: relative; display: inline-flex; isolation: isolate; }
+    .huly-cta-wrap__halo {
+      position: absolute; z-index: -1; top: 50%; left: 50%;
+      width: 380px; height: 200px;
+      transform: translate(-50%, -50%) translateZ(0);
+      pointer-events: none; will-change: transform, opacity;
+      background: radial-gradient(45% 50% at 50% 50%,
+        rgba(255, 255, 255, 0.42) 0%,
+        rgba(224, 242, 255, 0.35) 12%,
+        rgba(156, 236, 252, 0.28) 28%,
+        rgba(77, 151, 254,  0.18) 48%,
+        rgba(14, 165, 233,  0.10) 65%,
+        rgba(3,  105, 161,  0.03) 82%,
+        rgba(3,  105, 161,  0)    100%);
+      filter: blur(22px); opacity: 0;
+      transition: opacity .35s ease-out;
+    }
+    .huly-cta-wrap:hover .huly-cta-wrap__halo { opacity: 1; }
+
+    .huly-cta {
+      position: relative; z-index: 10;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 28px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 9999px;
+      background: #ECF5FB;
+      font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: -0.015em;
+      color: var(--jc-blue-900); white-space: nowrap; cursor: pointer;
+      transition: color .2s cubic-bezier(.4,0,.2,1),
+                  background-color .2s cubic-bezier(.4,0,.2,1),
+                  border-color .2s cubic-bezier(.4,0,.2,1),
+                  transform .25s cubic-bezier(.4,0,.2,1);
+    }
+    .huly-cta:hover { background: #fff; transform: translateY(-1px); }
+
+    /* Inner glow (JS sets transform.translate-x dynamically based on cursor) */
+    .huly-cta__glow {
+      position: absolute; z-index: -1; top: 50%; left: 0;
+      width: 220px; height: 121px;
+      transform: translate(115px, -50%) translateZ(0);
+      pointer-events: none; will-change: transform;
+    }
+    .huly-cta__glow::before {
+      content: ""; position: absolute; top: 50%; left: 50%; width: 121px; height: 121px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(50% 50% at 50% 50%,
+        #FFFFFF 3.5%, var(--jc-blue-100) 26.5%, var(--jc-blue-300) 37.5%,
+        rgba(77, 151, 254, 0.50) 49%, rgba(3, 105, 161, 0) 92.5%);
+    }
+    .huly-cta__glow::after {
+      content: ""; position: absolute; top: 50%; left: 50%; width: 220px; height: 103px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(48% 50% at 50% 50%,
+        #FFFFFF 29%, var(--jc-blue-50) 48.5%, var(--jc-blue-100) 60.71%,
+        rgba(186, 230, 255, 0) 100%);
+      filter: blur(6px);
+    }
+    .huly-cta__arrow { width: 17px; height: 9px; color: var(--jc-blue-900); transition: transform .25s ease; }
+    .huly-cta:hover .huly-cta__arrow { transform: translateX(3px); }
+    .huly-cta__badge {
+      display: inline-flex; align-items: center; padding: 2px 7px; margin-left: 4px;
+      border-radius: 999px; font-size: 9.5px; letter-spacing: 0.08em;
+      background: var(--jc-blue-900); color: #fff;
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0 28px; height: 48px; border-radius: 9999px;
+      font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.92);
+      transition: background .25s ease, border-color .25s ease;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: rgba(186,230,255,0.30); }
+
+    /* ==================================================================
+       Reveal animations
+       ================================================================== */
+    @keyframes fade-in { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: none; } }
+    @keyframes fade-up { 0% { opacity: 0; transform: translateY(28px); } 100% { opacity: 1; transform: none; } }
+    @keyframes fade-zoom { 0% { opacity: 0; transform: scale(0.96) translateY(20px); } 100% { opacity: 1; transform: none; } }
+    .fade-in { animation: fade-in .8s cubic-bezier(.4,0,.2,1) both; }
+    .fade-up { opacity: 0; }
+    .fade-up.is-revealed { animation: fade-up 1s cubic-bezier(.4,0,.2,1) both; }
+    .fade-zoom { opacity: 0; }
+    .fade-zoom.is-revealed { animation: fade-zoom 1.1s cubic-bezier(.4,0,.2,1) both; }
+
+    /* Stagger children — alle Kinder fade-up'en */
+    .stagger > * { opacity: 0; }
+    .stagger.is-revealed > * {
+      animation: fade-up 1s cubic-bezier(.4,0,.2,1) both;
+      animation-delay: 600ms; /* Default für späte Kinder (>9) */
+    }
+    .stagger.is-revealed > *:nth-child(1) { animation-delay:   0ms; }
+    .stagger.is-revealed > *:nth-child(2) { animation-delay:  70ms; }
+    .stagger.is-revealed > *:nth-child(3) { animation-delay: 140ms; }
+    .stagger.is-revealed > *:nth-child(4) { animation-delay: 210ms; }
+    .stagger.is-revealed > *:nth-child(5) { animation-delay: 280ms; }
+    .stagger.is-revealed > *:nth-child(6) { animation-delay: 350ms; }
+    .stagger.is-revealed > *:nth-child(7) { animation-delay: 420ms; }
+    .stagger.is-revealed > *:nth-child(8) { animation-delay: 490ms; }
+    .stagger.is-revealed > *:nth-child(9) { animation-delay: 560ms; }
+
+    /* ==================================================================
+       Border-Beam (Konsole)
+       ================================================================== */
+    .has-beam { position: relative; }
+    .border-beam {
+      pointer-events: none; position: absolute; inset: 0;
+      border-radius: inherit;
+      border: var(--border-beam-width) solid transparent;
+      mask-clip: padding-box, border-box; mask-composite: intersect;
+      mask-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+      -webkit-mask-clip: padding-box, border-box;
+      -webkit-mask-composite: source-in, xor;
+    }
+    .border-beam::before {
+      content: ""; position: absolute; aspect-ratio: 1 / 1; width: 240px;
+      background: linear-gradient(to left, var(--jc-blue-300), var(--jc-blue-500), transparent);
+      offset-path: rect(0 auto auto 0 round 240px);
+      offset-distance: 0%;
+      animation: border-beam 8s linear infinite;
+    }
+    @keyframes border-beam { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+
+    /* ==================================================================
+       Hero
+       ================================================================== */
+    .hero { position: relative; padding: 8rem 1.5rem 6rem; text-align: center; isolation: isolate; }
+    .hero__h1 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; margin: 1.5rem 0 1.5rem; }
+    .hero__sub { font-size: 1.0625rem; line-height: 1.55; color: rgba(255,255,255,0.7); max-width: 38rem; margin: 0 auto 2.5rem; }
+    .hero__sub strong { color: var(--jc-blue-100); font-weight: 600; }
+    .hero__cta-row { display: flex; flex-direction: column; gap: 1rem; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+    @media (min-width: 640px) { .hero__cta-row { flex-direction: row; } }
+    .hero__caption { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+
+    /* ==================================================================
+       Animated Console (typing + window grows)
+       ================================================================== */
+    .console-wrap { position: relative; max-width: 740px; margin: 3rem auto 0; padding: 0 1rem; }
+    .console {
+      position: relative; border-radius: 14px;
+      background: linear-gradient(180deg, rgba(20,47,105,0.45), rgba(5,9,19,0.85));
+      border: 1px solid rgba(156,236,252,0.18);
+      box-shadow:
+        0 30px 80px -25px rgba(77,151,254,0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+      overflow: hidden; text-align: left;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      transition: box-shadow .6s ease;
+    }
+    .console:hover { box-shadow: 0 40px 100px -30px rgba(77,151,254,0.55), inset 0 0 0 1px rgba(156,236,252,0.10); }
+    .console__bar {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.35);
+    }
+    .console__dots { display: inline-flex; gap: 6px; }
+    .console__dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+    .console__title {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 6px; margin-left: 4px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.72rem; color: rgba(255,255,255,0.78);
+    }
+    .console__title-dot { width: 8px; height: 8px; border-radius: 2px;
+      background: linear-gradient(135deg, var(--jc-blue-300), var(--jc-blue-500)); box-shadow: 0 0 6px var(--jc-blue-400); }
+    .console__live { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--jc-blue-300);
+      box-shadow: 0 0 8px rgba(156,236,252,0.85); animation: ctaDot 2s ease-in-out infinite; }
+    @keyframes ctaDot { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+    .console__body {
+      padding: 1.25rem 1.4rem 1.6rem;
+      font-size: 0.83rem; line-height: 1.75; color: rgba(255,255,255,0.78);
+      min-height: 0;
+      transition: min-height .5s cubic-bezier(.4,0,.2,1);
+    }
+    .console__line { display: flex; gap: 1ch; min-height: 1.45em; }
+    .console__lbl { color: rgba(255,255,255,0.55); width: 14ch; flex-shrink: 0; }
+    .console__check { color: var(--jc-blue-300); }
+    .console__group-h { color: var(--jc-blue-300); margin: 1rem 0 0.4rem; display: flex; gap: 0.5rem; align-items: center; }
+    .console__group-h::before { content: "◆"; color: var(--jc-blue-400); font-size: 0.7rem; }
+    .console__items { color: rgba(255,255,255,0.65); padding-left: 0.5rem; word-break: break-word; }
+    .console__prompt { color: rgba(255,255,255,0.85); margin-top: 1.1rem; }
+    .console__cursor-inline { display: inline-block; width: 0.6ch; height: 1em; vertical-align: -2px; background: var(--jc-blue-300); margin-left: 1px; box-shadow: 0 0 6px rgba(156,236,252,0.7); animation: blink 1s steps(2, end) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ==================================================================
+       Marquee
+       ================================================================== */
+    .marquee-wrap {
+      padding: 2.5rem 0; overflow: hidden;
+      position: relative;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .marquee-track { display: flex; width: max-content; animation: marquee-scroll 60s linear infinite; }
+    .marquee-track__row {
+      display: flex; align-items: center;
+      gap: 4.5rem;
+      padding-right: 4.5rem; /* trailing gap = same as inter-logo gap → seamless loop */
+      flex-shrink: 0;
+    }
+    .customer-logo {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 44px; min-width: 100px;
+      transition: opacity .3s ease, filter .3s ease;
+      opacity: 0.7;
+    }
+    .customer-logo:hover { opacity: 1; }
+    .customer-logo img { max-height: 44px; max-width: 180px; width: auto; height: auto; display: block; object-fit: contain; }
+    .customer-logo .fallback {
+      font-size: 1.1rem; font-weight: 600; color: rgba(255,255,255,0.55);
+      letter-spacing: -0.01em;
+    }
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ==================================================================
+       Card system (Pain · Use Cases) JC-Blue Progression
+       ================================================================== */
+    .card-jc {
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 2.25rem 2rem 2rem;
+      transition: background .35s ease, transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+    .card-jc:hover {
+      background: rgba(77,151,254,0.04);
+      transform: translateY(-3px);
+      border-color: rgba(77,151,254,0.28);
+      box-shadow: 0 20px 60px -20px rgba(77,151,254,0.30);
+    }
+    .card-jc::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 2px;
+      background: var(--card-accent, linear-gradient(90deg, var(--jc-blue-400), var(--jc-blue-700)));
+    }
+    .card-jc::after {
+      content: ''; position: absolute; inset: auto 8% -55% 8%; height: 65%;
+      background: var(--card-glow, radial-gradient(ellipse 70% 100% at 50% 100%, rgba(77,151,254,0.18), transparent 70%));
+      pointer-events: none; filter: blur(20px);
+    }
+    .card-jc h3 { font-size: clamp(1.4rem, 2.5vw, 1.875rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 0.5rem; }
+    .card-jc p.sub  { font-weight: 500; margin-bottom: 1rem; }
+    .card-jc p.body { color: rgba(255,255,255,0.65); line-height: 1.65; }
+
+    .card-light  { --card-accent: linear-gradient(90deg, var(--jc-blue-100), var(--jc-blue-300));
+                   --card-glow:   radial-gradient(ellipse 70% 100% at 50% 100%, rgba(156,236,252,0.22), transparent 70%); }
+    .card-mid    { --card-accent: linear-gradient(90deg, var(--jc-blue-300), var(--jc-blue-400));
+                   --card-glow:   radial-gradient(ellipse 70% 100% at 50% 100%, rgba(77,151,254,0.22), transparent 70%); }
+    .card-deep   { --card-accent: linear-gradient(90deg, var(--jc-blue-400), var(--jc-blue-700), var(--jc-blue-900));
+                   --card-glow:   radial-gradient(ellipse 70% 100% at 50% 100%, rgba(40,100,201,0.22), transparent 70%); }
+
+    .card-light p.sub { color: var(--jc-blue-300); }
+    .card-mid p.sub   { color: var(--jc-blue-100); }
+    .card-deep p.sub  { color: var(--jc-blue-300); }
+
+    .card-jc__head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; }
+    .card-jc__head .icon-tile { flex-shrink: 0; }
+    .card-jc__divider { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent); }
+
+    /* Card spine — subtle line connecting stacked cards */
+    .card-spine {
+      position: relative;
+    }
+    .card-spine::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, transparent, rgba(77,151,254,0.18) 20%, rgba(77,151,254,0.18) 80%, transparent);
+      z-index: -1; pointer-events: none;
+    }
+
+    /* ==================================================================
+       Icon tile
+       ================================================================== */
+    .icon-tile {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(77,151,254,0.10); border: 1px solid rgba(77,151,254,0.30);
+      color: var(--jc-blue-100);
+      transition: transform .3s ease, background .3s ease;
+    }
+    .card-jc:hover .icon-tile { transform: scale(1.05); }
+    .icon-tile.light { background: rgba(156,236,252,0.10); border-color: rgba(156,236,252,0.30); color: var(--jc-blue-100); }
+    .icon-tile.mid   { background: rgba(77,151,254,0.10);  border-color: rgba(77,151,254,0.30);  color: var(--jc-blue-100); }
+    .icon-tile.deep  { background: rgba(40,100,201,0.16);  border-color: rgba(40,100,201,0.40);  color: var(--jc-blue-100); }
+
+    /* ==================================================================
+       Stat Bar (counter animation)
+       ================================================================== */
+    .stat-bar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; text-align: center; }
+    @media (min-width: 700px) { .stat-bar { grid-template-columns: repeat(6, 1fr); } }
+    .stat-num { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+                background: linear-gradient(120deg, var(--jc-blue-100), var(--jc-blue-300) 50%, var(--jc-blue-500));
+                -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat-lbl { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 0.4rem; }
+
+    /* ==================================================================
+       Feature cards
+       ================================================================== */
+    .feature-card {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+      padding: 1.6rem;
+      transition: border-color .3s ease, transform .3s ease, background .3s ease, box-shadow .3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(77,151,254,0.40);
+      transform: translateY(-3px);
+      background: rgba(77,151,254,0.04);
+      box-shadow: 0 16px 40px -16px rgba(77,151,254,0.40);
+    }
+    .feature-card .icon-tile { width: 40px; height: 40px; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* ==================================================================
+       Compare cards
+       ================================================================== */
+    .compare-card {
+      position: relative; padding: 2rem; border-radius: 22px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform .3s ease;
+    }
+    .compare-card:hover { transform: translateY(-2px); }
+    .compare-card.is-good { border-color: rgba(77,151,254,0.30); background: rgba(77,151,254,0.04); box-shadow: 0 30px 80px -30px rgba(77,151,254,0.30); }
+    .compare-card__head { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.4rem; }
+    .compare-card h3 { font-size: 1.125rem; font-weight: 600; }
+    .compare-row { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.55rem 0; font-size: 0.92rem; }
+    .compare-row.bad  { color: rgba(255,200,210,0.72); }
+    .compare-row.good { color: rgba(186,230,255,0.92); }
+    .compare-row svg  { flex-shrink: 0; margin-top: 0.15rem; }
+    .compare-row.bad  svg { color: rgba(255,150,170,0.7); }
+    .compare-row.good svg { color: var(--jc-blue-300); }
+    .compare-card__badge {
+      position: absolute; top: -10px; right: 18px;
+      padding: 4px 12px; border-radius: 999px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
+      background: var(--jc-blue-400); color: var(--jc-blue-900);
+      box-shadow: 0 6px 22px rgba(77,151,254,0.45);
+    }
+    .compare-bad-icon { background: rgba(255,150,170,0.10) !important; border-color: rgba(255,150,170,0.30) !important; color: rgba(255,180,200,0.92) !important; }
+
+    /* ==================================================================
+       Skills Browser
+       ================================================================== */
+    .tab-row { display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: center; margin-bottom: 1.2rem; }
+    .tab-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.1rem; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.7);
+      transition: all .25s ease;
+    }
+    .tab-btn:hover { color: #fff; border-color: rgba(77,151,254,0.40); }
+    .tab-btn.is-active {
+      background: linear-gradient(135deg, rgba(77,151,254,0.20), rgba(3,105,161,0.20));
+      color: var(--jc-blue-100); border-color: rgba(77,151,254,0.45);
+    }
+    .tab-count {
+      font-size: 0.7rem; font-weight: 600; padding: 1px 8px; border-radius: 999px;
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.78);
+    }
+    .tab-btn.is-active .tab-count { background: rgba(186,230,255,0.18); color: var(--jc-blue-100); }
+
+    .search-wrap { max-width: 36rem; margin: 0 auto 2rem; position: relative; }
+    .search-wrap input {
+      width: 100%; padding: 0.85rem 1rem 0.85rem 2.75rem;
+      border-radius: 999px; font-size: 0.875rem;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); color: #fff;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .search-wrap input::placeholder { color: rgba(255,255,255,0.45); }
+    .search-wrap input:focus { outline: 0; border-color: rgba(77,151,254,0.55); background: rgba(255,255,255,0.06); }
+    .search-wrap > svg { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.45); }
+
+    .cat-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+    @media (min-width: 600px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
+    .cat-card {
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      padding: 1.05rem 1.2rem;
+      transition: border-color .25s ease, transform .25s ease, background .25s ease;
+      text-align: center;
+    }
+    .cat-card:hover { border-color: rgba(77,151,254,0.40); transform: translateY(-2px); background: rgba(77,151,254,0.03); }
+    .cat-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.45rem; }
+    .cat-card h4 { font-size: 0.95rem; font-weight: 600; text-align: center; flex: 1; }
+    .cat-card p { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .cat-count {
+      font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+      background: rgba(77,151,254,0.12); color: var(--jc-blue-100); border: 1px solid rgba(77,151,254,0.22);
+    }
+
+    /* ==================================================================
+       Pricing
+       ================================================================== */
+    .countdown-banner {
+      max-width: 36rem; margin: 0 auto 2.5rem;
+      border: 1px solid rgba(77,151,254,0.30);
+      background: rgba(77,151,254,0.05);
+      border-radius: 18px;
+      padding: 1.4rem 1.75rem;
+      text-align: center;
+    }
+    .countdown-banner__title { font-size: 0.9rem; color: var(--jc-blue-100); font-weight: 600; margin-bottom: 1rem; }
+    .countdown { display: inline-flex; align-items: center; gap: 1.4rem; }
+    .countdown__cell { display: flex; flex-direction: column; gap: 0.3rem; align-items: center; }
+    .countdown__num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 1.9rem; font-weight: 700; color: #fff; line-height: 1; }
+    .countdown__lbl { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .countdown__sep { color: rgba(255,255,255,0.25); margin-top: -1rem; }
+
+    .price-card {
+      position: relative; max-width: 36rem; margin: 0 auto;
+      border: 1px solid rgba(77,151,254,0.30);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(77,151,254,0.10), transparent 50%), rgba(255,255,255,0.02);
+      padding: 2.2rem 2rem;
+      box-shadow: 0 30px 80px -25px rgba(77,151,254,0.40);
+    }
+    .price-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .price-card .desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem; }
+    .price-card .price-row { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
+    .price-card .price { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; }
+    .price-card .price-old { font-size: 1.15rem; color: rgba(255,255,255,0.4); text-decoration: line-through; }
+    .price-card .price-tag { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+    .feature-list { list-style: none; padding: 0; margin: 0 0 1.8rem; display: grid; gap: 0.7rem; }
+    .feature-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; color: rgba(255,255,255,0.85); }
+    .feature-list svg { flex-shrink: 0; margin-top: 0.15rem; color: var(--jc-blue-300); }
+
+    .trust-icons { max-width: 50rem; margin: 2.5rem auto 0; display: grid; grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+    @media (min-width: 700px) { .trust-icons { grid-template-columns: repeat(3, 1fr); } }
+    .trust-icons__item { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+    .trust-icons svg { color: var(--jc-blue-300); }
+    .trust-icons span { font-size: 0.875rem; color: rgba(255,255,255,0.65); }
+
+    /* ==================================================================
+       FAQ
+       ================================================================== */
+    .faq-list { max-width: 44rem; margin: 0 auto; }
+    details.faq { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.15rem 0; }
+    details.faq summary {
+      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; font-weight: 500; color: #fff;
+      transition: color .25s ease;
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary svg { transition: transform .35s cubic-bezier(.4,0,.2,1); flex-shrink: 0; color: var(--jc-blue-300); }
+    details.faq:hover summary { color: var(--jc-blue-100); }
+    details.faq[open] summary svg { transform: rotate(180deg); }
+    details.faq[open] summary { color: var(--jc-blue-100); }
+    details.faq .faq-body { color: rgba(255,255,255,0.7); padding-top: 0.85rem; line-height: 1.65; font-size: 0.92rem;
+      animation: fade-up .4s cubic-bezier(.4,0,.2,1) both; }
+
+    /* ==================================================================
+       Footer
+       ================================================================== */
+    footer.footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 3rem 1.5rem; color: rgba(255,255,255,0.55); font-size: 0.875rem; }
+    footer.footer .footer__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; align-items: center; justify-content: space-between; }
+    @media (min-width: 768px) { footer.footer .footer__inner { flex-direction: row; } }
+    footer.footer nav { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    footer.footer nav a:hover { color: #fff; }
+
+    /* ==================================================================
+       Utilities
+       ================================================================== */
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .grid-stack { display: grid; gap: 1.75rem; max-width: 800px; margin: 0 auto; }
+    .text-center { text-align: center; }
+    .mt-12 { margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <main>
+
+  <!-- ================== Header ================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#" class="site-header__logo" aria-label="JustClose Startseite">
+        <img src="logo.png" alt="JustClose"
+             class="site-header__logo-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block'; this.nextElementSibling.nextElementSibling.style.display='inline';" />
+        <span class="site-header__logo-dot" style="display:none;"></span>
+        <span style="display:none;">JustClose</span>
+      </a>
+      <nav class="site-nav">
+        <a href="#features">Features</a>
+        <a href="#whats-inside">Inhalte</a>
+        <a href="#pricing">Preise</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="site-header__right">
+        <a href="#pricing" class="nav-cta">
+          Jetzt sichern
+          <svg viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+        </a>
+        <button class="menu-btn" aria-label="Menü">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================== Hero ================== -->
+  <section class="hero bg-radial-jc has-fade-bottom" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none;"></div>
+    <div style="position: relative; max-width: 1200px; width: 100%;">
+
+      <span class="pill fade-in" style="margin-bottom: 1.5rem;">Sales Betriebssystem</span>
+
+      <h1 class="hero__h1 fade-in" style="animation-delay: .1s;">
+        <span class="text-wg-grad">Dein Vertriebssystem</span><br />
+        <span class="text-cyan-royal-grad">für IT &amp; Software</span>
+      </h1>
+
+      <p class="hero__sub fade-in" style="animation-delay: .2s;">
+        Ein Vertrieb, der nichts vergisst. <strong>500+ SOPs in 32 Bereichen.</strong>
+        9 Rollen. Vom Outbound bis zum Renewal.
+        <strong>Einmal aufsetzen, planbar verkaufen.</strong>
+      </p>
+
+      <div class="hero__cta-row fade-in" style="animation-delay: .3s;">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="#pricing" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Jetzt sichern
+            <span class="huly-cta__badge">−50%</span>
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="hero__caption fade-in" style="animation-delay: .4s;">Setup in unter 60 Sekunden.</p>
+
+      <div class="console-wrap fade-in" style="animation-delay: .5s;">
+        <div class="console has-beam">
+          <div class="border-beam"></div>
+          <div class="console__bar">
+            <div class="console__dots"><span class="console__dot"></span><span class="console__dot"></span><span class="console__dot"></span></div>
+            <div class="console__title"><span class="console__title-dot"></span>justclose · accelerator</div>
+            <div class="console__live"></div>
+          </div>
+          <div class="console__body" id="js-console-body"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up" style="margin: -1px auto 0;"></div>
+
+  <!-- ================== Customer-Logo Marquee ================== -->
+  <section class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-track__row">
+        <span class="customer-logo"><img src="logos/zubler-partner.png" alt="Zubler &amp; Partner" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">Zubler &amp; Partner</span></span>
+        <span class="customer-logo"><img src="logos/wolution.png" alt="wolution" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">wolution</span></span>
+        <span class="customer-logo"><img src="logos/swissconomy.png" alt="SwissConomy AG" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">SwissConomy AG</span></span>
+        <span class="customer-logo"><img src="logos/servinga.png" alt="servinga" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">servinga</span></span>
+        <span class="customer-logo"><img src="logos/rech.png" alt="RECH" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">RECH/&gt;</span></span>
+        <span class="customer-logo"><img src="logos/noris-ib.png" alt="NORIS-IB" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">NORIS-IB</span></span>
+        <span class="customer-logo"><img src="logos/meliot.png" alt="meliot" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">meliot</span></span>
+        <span class="customer-logo"><img src="logos/krutzfeld.png" alt="Krutzfeld Technologies" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">Krutzfeld</span></span>
+        <span class="customer-logo"><img src="logos/etixpert.png" alt="Etixpert Consulting" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">Etixpert</span></span>
+        <span class="customer-logo"><img src="logos/digiventus.png" alt="digiventus" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">digiventus</span></span>
+        <span class="customer-logo"><img src="logos/deepmetis.png" alt="DeepMetis" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"><span class="fallback" style="display:none;">DeepMetis</span></span>
+      </div>
+      <div class="marquee-track__row" aria-hidden="true">
+        <span class="customer-logo"><img src="logos/zubler-partner.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/wolution.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/swissconomy.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/servinga.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/rech.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/noris-ib.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/meliot.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/krutzfeld.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/etixpert.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/digiventus.png" alt=""></span>
+        <span class="customer-logo"><img src="logos/deepmetis.png" alt=""></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== Pain Points ================== -->
+  <section class="sect bg-radial-jc has-fade-both" style="overflow: hidden;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.5;"></div>
+    <div class="max-c" style="position: relative;">
+      <div class="sect-h fade-up">
+        <span class="pill">Kommt Dir das bekannt vor?</span>
+        <h2><span class="text-wg-grad">Dein Sales Setup</span> <span class="text-cyan-deep-grad">bremst Dich aus</span></h2>
+        <p>Die meisten Software-Unternehmen verkaufen ohne System. Es funktioniert, bis etwas Wichtiges schiefgeht.</p>
+      </div>
+
+      <div class="grid-stack stagger card-spine">
+
+        <article class="card-jc card-light">
+          <div class="card-jc__head">
+            <div class="icon-tile light">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.7.6 1 1.4 1 2.3v1h6v-1c0-.9.3-1.7 1-2.3A7 7 0 0 0 12 2z"/></svg>
+            </div>
+            <div class="card-jc__divider"></div>
+          </div>
+          <h3>Dein Sales hat kein Gedächtnis.</h3>
+          <p class="sub">Jeder Deal startet bei null.</p>
+          <p class="body">Du erklärst Use Cases, Pain Points und Zuständigkeiten. Immer wieder. Der neue Sales fängt mit Notion-Suche an, statt zu verkaufen. Was im letzten Discovery besprochen wurde, ist drei Stages später vergessen. Kein Kontext, kein Lernen, nur Wiederholung.</p>
+        </article>
+
+        <article class="card-jc card-mid">
+          <div class="card-jc__head">
+            <div class="icon-tile mid">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </div>
+            <div class="card-jc__divider"></div>
+          </div>
+          <h3>Dein Stack ist ein Kartenhaus.</h3>
+          <p class="sub">Ein falscher Stage-Wechsel und alles kippt.</p>
+          <p class="body">Tabs in Sheets, Sequenzen in Lemlist, Notes in Notion, Pipeline in HubSpot. Niemand weiß, welche Quelle die Wahrheit ist. Du arbeitest ohne Sicherheitsnetz und hoffst, dass es bis zum Quartalsende hält.</p>
+        </article>
+
+        <article class="card-jc card-deep">
+          <div class="card-jc__head">
+            <div class="icon-tile deep">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </div>
+            <div class="card-jc__divider"></div>
+          </div>
+          <h3>Frameworks sind für alle. Also für niemanden.</h3>
+          <p class="sub">Generisch rein, generisch raus.</p>
+          <p class="body">MEDDIC, SPIN, Challenger. Methoden, die zu jeder Branche passen und in keiner wirklich funktionieren. Sie kennen weder Dein Produkt noch Deine Zielkunden. Du baust auf einem Fundament, das nie für Dich gemacht war.</p>
+        </article>
+
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <p style="color: rgba(255,255,255,0.55); margin-bottom: 1.25rem;">Es gibt einen besseren Weg.</p>
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="#features" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Jetzt sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- ================== Stat Bar ================== -->
+  <section class="sect-tight" style="border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <div class="max-c stat-bar fade-up">
+      <div><div class="stat-num" data-counter="500" data-suffix="+">0</div><div class="stat-lbl">SOPs</div></div>
+      <div><div class="stat-num" data-counter="32">0</div><div class="stat-lbl">Bereiche</div></div>
+      <div><div class="stat-num" data-counter="21">0</div><div class="stat-lbl">Befehle</div></div>
+      <div><div class="stat-num" data-counter="9">0</div><div class="stat-lbl">Rollen</div></div>
+      <div><div class="stat-num" data-counter="8">0</div><div class="stat-lbl">Prüfungen</div></div>
+      <div><div class="stat-num" data-counter="6">0</div><div class="stat-lbl">Memory-Ebenen</div></div>
+    </div>
+  </section>
+
+  <!-- ================== Features ================== -->
+  <section id="features" class="sect bg-radial-soft has-fade-both">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Was wir bauen</span>
+        <h2><span class="text-wg-grad">Alles, was Dein Vertrieb</span> <span class="text-cyan-royal-grad">haben sollte</span></h2>
+        <p>Produktionsreife Infrastruktur aus echtem Tagesgeschäft. Keine Theorie. Funktionierende Systeme.</p>
+      </div>
+
+      <div class="grid-3 stagger">
+        <div class="feature-card">
+          <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg></div>
+          <h3>Langzeit Sales Memory</h3>
+          <p>Account-Historie, Discovery-Ergebnisse und Stakeholder-Maps zentral abgelegt. Auch der neue Sales weiß sofort, was der Kunde letztes Quartal gesagt hat.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Automatische Pipeline-Prüfungen</h3>
+          <p>Hintergrund-Regeln erkennen kippende Deals, fehlende Stakeholder und unvollständige Pflege. Probleme sichtbar, bevor sie das Quartal kosten.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+          <h3>Spezialisierte Rollen</h3>
+          <p>BDR, AE, CSM, Sales Ops. Jede Rolle mit eigenen SOPs, KPIs und Workflows. Onboarding eines Neuen in 14 Tagen statt drei Monaten.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+          <h3>Domain SOPs</h3>
+          <p>Discovery, Demo, Closing, Handover, QBR, Renewal, Expansion. Jeder Schritt mit Input, Prozess, Output und Definition of Done.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+          <h3>Befehls-Framework</h3>
+          <p>Slash-Befehle für wiederkehrende Sales-Workflows: /discovery, /demo-prep, /deal-review, /forecast. Standard im ganzen Team.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <h3>Ein-Klick-Setup</h3>
+          <p>Wir installieren das System in Deinen Stack. Close, HubSpot, n8n, Power Automate. Tag 1 produktiv. Kein Beratungs-Gerüst zum Selbstbauen.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="#pricing" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Jetzt sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- ================== Comparison ================== -->
+  <section class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Der Unterschied</span>
+        <h2><span class="text-wg-grad">Nicht noch ein</span><br /><span class="text-cyan-royal-grad">Berater-PDF</span></h2>
+        <p>Klassische Sales-Beratung kippt Dir Folien in den Schoß. JustClose installiert das System, das tatsächlich verkauft.</p>
+      </div>
+
+      <div class="grid-2 stagger" style="max-width: 880px; margin: 0 auto;">
+        <div class="compare-card">
+          <div class="compare-card__head">
+            <div class="icon-tile compare-bad-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            </div>
+            <h3>Klassische Sales-Beratung</h3>
+          </div>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Drei Workshop-Tage, dann Folien-Deck per Mail</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Generische Frameworks für alle Branchen</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Sofort tot. Keine Intelligenz, keine Kontrolle</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du baust jede Vorlage selbst manuell</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Sofortige technische Schulden. Tools, die Du nie nutzt</li>
+          </ul>
+        </div>
+
+        <div class="compare-card is-good">
+          <span class="compare-card__badge">JustClose</span>
+          <div class="compare-card__head">
+            <div class="icon-tile">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3>Selbstlernende Architektur</h3>
+          </div>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Komplettes System: Memory, Rollen, SOPs, Befehle, Prüfungen</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Installiert sich neben dem, was Du schon hast. Keine Konflikte</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Automatische Prüfungen fangen Fehler ab, bevor sie das Quartal treffen</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Selbstlernend. Wir trainieren das System auf Deinen Stack</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>500+ SOPs in 32 Bereichen. Nutze, was Du brauchst</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="#pricing" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Jetzt sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- ================== Use Cases ================== -->
+  <section class="sect bg-radial-jc has-fade-both" style="overflow: hidden;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.4;"></div>
+    <div class="max-c" style="position: relative;">
+      <div class="sect-h wide fade-up">
+        <span class="pill cyan">Dein Team. Erweitert.</span>
+        <h2><span class="text-wg-grad">Was, wenn jeder Sales</span><br /><span class="text-cyan-deep-grad">einen Profi-Workflow hätte?</span></h2>
+        <p>Deine besten Leute wissen, wie B2B-Software verkauft wird. Ab jetzt weiß es das ganze Team.</p>
+      </div>
+
+      <div class="grid-stack stagger card-spine">
+        <article class="card-jc card-light">
+          <div class="card-jc__head">
+            <div class="icon-tile light">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </div>
+            <div class="card-jc__divider"></div>
+          </div>
+          <h3>Outbound, Closing, CRM. Sofort produktiv.</h3>
+          <p class="sub">12 Bereiche. Vom ersten Touch bis zum Renewal.</p>
+          <p class="body">Statt Wochen mit Onboarding zu verbrennen, startet jeder neue Sales mit einem fertigen Playbook. Discovery-Frameworks, Demo-Scripts, Closing-Drills. Alles dokumentiert, alles getestet auf B2B-Software.</p>
+        </article>
+
+        <article class="card-jc card-mid">
+          <div class="card-jc__head">
+            <div class="icon-tile mid">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5L12 2z"/></svg>
+            </div>
+            <div class="card-jc__divider"></div>
+          </div>
+          <h3>Kein generischer Output mehr.</h3>
+          <p class="sub">Deine Standards. Dein Kontext. Jede Session.</p>
+          <p class="body">Unsere SOPs sind nicht aus Sales-Büchern. Sie kommen aus echten Deals. IT-Dienstleister, SaaS-Anbieter, Software-Häuser. Du bekommst, was nachweislich funktioniert in Deiner Branche, nicht in der Pharma- oder Auto-Industrie.</p>
+        </article>
+
+        <article class="card-jc card-deep">
+          <div class="card-jc__head">
+            <div class="icon-tile deep">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <div class="card-jc__divider"></div>
+          </div>
+          <h3>Verfügbar, wenn Du es brauchst.</h3>
+          <p class="sub">Kein Stundensatz. Kein Wartezimmer. Kein Briefing.</p>
+          <p class="body">Pipeline-Review zwischen zwei Meetings. Account-Strategie vor dem Closing-Call. Cold-Sequence neu schreiben am Sonntagabend. Das System mit eingebautem Wissen arbeitet im Hintergrund und liefert, als säße ein Senior Sales mit am Tisch.</p>
+        </article>
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="#pricing" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Jetzt sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- ================== Skills Browser ================== -->
+  <section id="whats-inside" class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Was steckt drin</span>
+        <h2><span class="text-wg-grad">500+ SOPs</span><br /><span class="text-cyan-royal-grad">in 32 Bereichen</span></h2>
+        <p>Domain-Expertise für jeden Bereich Deines Vertriebs. Jede SOP ist ein strukturierter Workflow, kein Prompt-Dump. Plus Befehle, Rollen, Prüfungen und Memory.</p>
+      </div>
+
+      <div class="tab-row fade-up">
+        <button class="tab-btn is-active" data-tab="sops"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>SOPs <span class="tab-count">218</span></button>
+        <button class="tab-btn" data-tab="commands"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Befehle <span class="tab-count">21</span></button>
+        <button class="tab-btn" data-tab="roles"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>Rollen <span class="tab-count">9</span></button>
+        <button class="tab-btn" data-tab="checks"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Prüfungen <span class="tab-count">8</span></button>
+        <button class="tab-btn" data-tab="memory"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/></svg>Memory <span class="tab-count">6</span></button>
+      </div>
+
+      <div class="search-wrap fade-up">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="cat-search" type="search" placeholder="SOPs oder Bereiche suchen…" />
+      </div>
+
+      <div id="cat-grid" class="cat-grid stagger">
+        <div class="cat-card"><div class="cat-card__head"><h4>Outbound &amp; Prospecting</h4><span class="cat-count">28</span></div><p>ICP-Schärfung, Listenbau, Sequenzen, Reply-Optimierung, Cold-Calling.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Cold Email Sequences</h4><span class="cat-count">18</span></div><p>Hooks, Personalisierung, Follow-up-Logik, A/B-Testing, Spam-Vermeidung.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>LinkedIn &amp; Social Selling</h4><span class="cat-count">14</span></div><p>Profil-Optimierung, Connection-Strategien, DM-Templates, Content-Plan.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Cold Calling &amp; Voice</h4><span class="cat-count">11</span></div><p>Opener, Einwandbehandlung, Voicemails, Discovery am Telefon.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>ICP &amp; Segmentation</h4><span class="cat-count">12</span></div><p>Buyer-Persona, Account-Tiering, Vertical-Cuts, Total Addressable Market.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Inbound &amp; Lead-Routing</h4><span class="cat-count">16</span></div><p>Inbound-Triage, Routing-Regeln, Speed-to-Lead, Re-Engagement.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Lead-Scoring &amp; MQL</h4><span class="cat-count">8</span></div><p>Scoring-Modelle, MQL-Definition, SQL-Übergabe, Disqualifikation.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Discovery &amp; Demos</h4><span class="cat-count">22</span></div><p>Discovery-Frameworks, Demo-Scripts, Pain-Mapping, Stakeholder-Maps.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Qualification &amp; MEDDIC</h4><span class="cat-count">14</span></div><p>MEDDIC, BANT, GPCT, Champion-Identifikation, Power-Sponsor.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Demo-Engineering</h4><span class="cat-count">9</span></div><p>Demo-Setup, Sandbox-Hygiene, Demo-Storyline, Q&amp;A-Kataloge.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Closing &amp; Verhandlung</h4><span class="cat-count">19</span></div><p>Closing-Drills, Einwandbehandlung, Preisverteidigung, Verträge.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Negotiation Tactics</h4><span class="cat-count">12</span></div><p>Anchoring, Concessions, Mutual-Action-Plans, Multi-Threading.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Pricing &amp; Packaging</h4><span class="cat-count">12</span></div><p>Tier-Design, Add-ons, Volume-Discounts, ROI-Cases.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Battle Cards &amp; Competitor</h4><span class="cat-count">10</span></div><p>Wettbewerbsanalyse, Battle Cards, Win/Loss-Analyse.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Account Planning &amp; ABM</h4><span class="cat-count">14</span></div><p>Target-Account-Lists, Multi-Threading, Strategic-Plays, Champion-Maps.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>CRM &amp; Pipeline</h4><span class="cat-count">24</span></div><p>Close- und HubSpot-Setup, Stages, Auto-Tasks, Reporting-Dashboards.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Forecasting &amp; Reporting</h4><span class="cat-count">14</span></div><p>Wöchentliche Reviews, Deal-Health, Win-Rate-Modelle, Quartalsplan.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Sales Operations</h4><span class="cat-count">18</span></div><p>Quotenplanung, Territory-Cuts, Comp-Pläne, Tooling-Stack.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>RevOps &amp; Attribution</h4><span class="cat-count">10</span></div><p>Lifecycle-Reporting, Attribution-Modelle, Funnel-Diagnostik.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>AI &amp; Automation</h4><span class="cat-count">28</span></div><p>n8n, Power Automate, Claude-Workflows für Sales-Teams.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Tools &amp; Tech-Stack</h4><span class="cat-count">8</span></div><p>Auswahl, Integration und Setup für Deinen Sales-Stack.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Customer Success</h4><span class="cat-count">12</span></div><p>Onboarding, QBR, Expansion-Playbooks, Health-Score-Modelle.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Onboarding &amp; Activation</h4><span class="cat-count">15</span></div><p>First-Value-Pfade, Activation-Triggers, Time-to-Value.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Retention &amp; Churn</h4><span class="cat-count">13</span></div><p>Risk-Indikatoren, Save-Plays, Cancellation-Calls, Win-Backs.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Expansion &amp; Upsell</h4><span class="cat-count">16</span></div><p>Upsell-Triggers, Multi-Product-Plays, Renewal-Cycles.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Hiring &amp; Onboarding</h4><span class="cat-count">11</span></div><p>Interview-Guides, Ramp-Up-Pläne, Scorecards für Sales-Rollen.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Coaching &amp; Calls</h4><span class="cat-count">16</span></div><p>Call-Review-Methoden, 1:1-Templates, Performance-Reviews.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Performance &amp; 1:1s</h4><span class="cat-count">13</span></div><p>Skill-Frameworks, Quotaerreichung, Career-Paths.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Sales Enablement</h4><span class="cat-count">15</span></div><p>Onboarding-Curriculum, Content-Library, Skill-Checkpoints.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Marketing-Sync</h4><span class="cat-count">9</span></div><p>SLA Marketing/Sales, Content-Briefings, Lead-Scoring, Attribution.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Compliance &amp; DSGVO</h4><span class="cat-count">7</span></div><p>Outbound-DSGVO, Datenverarbeitung, Vertragsbausteine.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Contract &amp; Procurement</h4><span class="cat-count">8</span></div><p>Vertragsverhandlung, Procurement-Calls, RFP-Antworten.</p></div>
+      </div>
+
+      <p class="text-center fade-up" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; margin: 2.5rem auto 0; max-width: 38rem;">
+        Jede SOP funktioniert als strukturierter Workflow. Inputs, Prozessschritte, Ausgabeformat, Qualitäts-Frameworks und Erfolgskriterien. Alles inklusive.
+      </p>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- ================== Pricing ================== -->
+  <section id="pricing" class="sect bg-radial-soft has-fade-both">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Preise</span>
+        <h2><span class="text-wg-grad">Einmal zahlen,</span><br /><span class="text-cyan-royal-grad">für immer nutzen</span></h2>
+        <p>Kein Abo. Einmal kaufen, in jedem Sales-Setup installieren, für immer nutzen.</p>
+      </div>
+
+      <div class="countdown-banner fade-up">
+        <div class="countdown-banner__title">Early-Bird-Preis. 50 % Rabatt, endet bald.</div>
+        <div class="countdown" id="countdown">
+          <div class="countdown__cell"><span class="countdown__num" data-d>02</span><span class="countdown__lbl">Tage</span></div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__cell"><span class="countdown__num" data-h>14</span><span class="countdown__lbl">Std</span></div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__cell"><span class="countdown__num" data-m>33</span><span class="countdown__lbl">Min</span></div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__cell"><span class="countdown__num" data-s>20</span><span class="countdown__lbl">Sek</span></div>
+        </div>
+      </div>
+
+      <div class="price-card fade-zoom">
+        <h3>JustClose</h3>
+        <p class="desc">Das komplette Vertriebssystem. SOPs, Memory, Rollen, Befehle, automatische Prüfungen. Alles drin.</p>
+        <div class="price-row">
+          <span class="price">€39</span>
+          <span class="price-old">€78</span>
+          <span class="price-tag">einmalig</span>
+        </div>
+
+        <ul class="feature-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>500+ Sales-SOPs in 32 Bereichen</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Langzeit-Memory über 6 Ebenen</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>9 spezialisierte Rollen mit eigenem Gedächtnis</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>21 Slash-Befehle</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>8 automatische Prüfungen (Pipeline-Health und Logging)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Selbstlernende Wissensdatenbank</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Tägliche Workflow-Rituale (/start, /sync, /end-day)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Funktioniert mit Close, HubSpot, Salesforce und Pipedrive</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Ein-Klick-Setup. Sofort einsatzbereit.</li>
+        </ul>
+
+        <div style="display: flex; justify-content: center;">
+          <div class="huly-cta-wrap">
+            <span class="huly-cta-wrap__halo"></span>
+            <a href="mailto:hello@justclose.de" class="huly-cta" style="height: 52px; padding: 0 36px; font-size: 14px;">
+              <span class="huly-cta__glow"></span>
+              Jetzt sichern
+              <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-icons fade-up">
+        <div class="trust-icons__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Einmal zahlen, für immer behalten</span>
+        </div>
+        <div class="trust-icons__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v6h-6"/></svg>
+          <span>Kostenlose Updates inklusive</span>
+        </div>
+        <div class="trust-icons__item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Kein Risiko. Jederzeit per E-Mail melden.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- ================== FAQ ================== -->
+  <section id="faq" class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">FAQ</span>
+        <h2 class="text-wg-grad">Häufige Fragen</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq" open>
+          <summary><span>Kann mein ganzes Sales-Team JustClose nutzen?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Ja. Eine Lizenz, alle Sales-Rollen. Vom BDR bis zum Head-of-Sales arbeiten alle mit denselben SOPs, Befehlen und Memory-Strukturen.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Ist das ein Abo?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Nein. Einmal zahlen, für immer nutzen. Klare Pakete, ein Festpreis, keine versteckten Folgekosten.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Werden meine Sales-Daten an Dritte gesendet?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Nein. Wir arbeiten in Deinem Stack, Deine Daten bleiben dort. Alle SOPs sind tool-agnostisch und DSGVO-konform.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Bekomme ich Updates?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Ja. Neue SOPs und Templates landen automatisch in Deinem System. Keine manuellen Migrationen.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Was genau bekomme ich nach dem Kauf?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Zugang zum kompletten System: 500+ SOPs in 32 Bereichen, alle Befehle, Rollen-Templates, Prüfungs-Checklists und Memory-Strukturen.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Kann ich JustClose auch nutzen, wenn ich kein Sales-Profi bin?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Ja. Genau dafür ist das System gebaut. Jede SOP hat Input, Schritte, Output und Erfolgskriterien. Du folgst dem Workflow, auch ohne 10 Jahre Sales-Erfahrung.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Ich brauche keine 200 SOPs. Lohnt sich das trotzdem?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Niemand nutzt am Anfang alle 200. Du nutzt 15 bis 20 SOPs aus 3 bis 4 Bereichen, die für Deine Wachstumsphase relevant sind. Der Rest steht bereit, sobald Du dahin kommst.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Was, wenn ich Hilfe beim Einrichten brauche?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Schreib uns. Wir helfen beim Setup Deines CRM, Deiner Outbound-Sequenzen und Reportings. Dein Team arbeitet ab Tag 1 produktiv im neuen System.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Kann ich es in mehreren Vertriebsteams nutzen?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Ja. Eine Lizenz, alle Teams. Vom Inside-Sales bis zum Channel-Vertrieb, alles abgedeckt durch dieselben SOPs und Befehle.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Wird es mein bestehendes Sales-Setup kaputt machen?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Nein. Wir installieren neben dem Bestehenden. Keine Konflikte, keine erzwungene Datenmigration. Wir adaptieren die SOPs an Deinen aktuellen Stack.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Was unterscheidet JustClose von kostenlosen Sales-Templates?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Kostenlose Templates sind Single-Files ohne Zusammenhang. JustClose ist ein zusammenhängendes System. SOPs, Befehle, Rollen, Prüfungen und Memory greifen ineinander.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Wie lange dauert die Einrichtung?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Unter 60 Sekunden für das Grund-Setup. Erste messbare Effekte (Pipeline-Klarheit, Reply-Rates) typischerweise ab Woche 3.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Was, wenn es bei mir nicht funktioniert?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Wir bleiben, bis es funktioniert. Im Erstgespräch definieren wir, was „funktioniert" konkret heißt. Qualifizierte Leads, Reply-Rates, Pipeline-Coverage. Daran messen wir uns.</div>
+        </details>
+        <details class="faq">
+          <summary><span>Funktioniert es mit Apollo, Lemlist oder Smartlead?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="faq-body">Ja. Unsere Outbound-SOPs sind tool-agnostisch. Wir nutzen, was Du bereits hast, oder schlagen die passende Auswahl für Deinen Use-Case vor.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== Final CTA ================== -->
+  <section class="sect-wide bg-radial-soft has-fade-top" style="position: relative; overflow: hidden; text-align: center;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.5;"></div>
+    <div style="position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; border-radius: 50%; pointer-events: none;
+                background: radial-gradient(circle, rgba(77,151,254,0.22) 0%, transparent 60%);"></div>
+    <div class="max-c" style="position: relative; max-width: 44rem;">
+      <h2 class="fade-up" style="font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 1.5rem;">
+        <span class="text-wg-grad">Hör auf zu hoffen.</span><br />
+        <span class="text-cyan-royal-grad">Fang an zu liefern.</span>
+      </h2>
+      <p class="fade-up" style="color: var(--jc-blue-300); font-size: 0.92rem; margin-bottom: 2rem;">Launch-Preis. 50 % Rabatt endet bald.</p>
+      <div class="fade-up" style="display: flex; justify-content: center;">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="mailto:hello@justclose.de" class="huly-cta" style="height: 52px; padding: 0 36px; font-size: 14px;">
+            <span class="huly-cta__glow"></span>
+            Jetzt sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <p class="fade-up" style="color: rgba(255,255,255,0.45); font-size: 0.78rem; margin-top: 1.25rem;">
+        Eine Zahlung. Lebenslanger Zugang.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================== Footer ================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 600; color: #fff;">
+        <img src="logo.png" alt="JustClose" style="height: 24px; width: auto;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block'; this.nextElementSibling.nextElementSibling.style.display='inline';" />
+        <span class="site-header__logo-dot" style="display:none;"></span>
+        <span style="display:none;">JustClose</span>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Preise</a>
+        <a href="#faq">FAQ</a>
+        <a href="#">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </nav>
+      <div style="font-size: 0.78rem;">© 2026 JustClose. Sales-System für IT &amp; Software.</div>
+    </div>
+  </footer>
+
+  </main>
+
+  <script>
+    /* ============ Header scroll ============ */
+    const header = document.querySelector('.site-header');
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ============ Reveal on scroll ============ */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-revealed'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.fade-up, .fade-zoom, .stagger, .section-bridge').forEach(el => io.observe(el));
+
+    /* ============ Tabs ============ */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+      });
+    });
+
+    /* ============ Search ============ */
+    const search = document.getElementById('cat-search');
+    if (search) {
+      search.addEventListener('input', () => {
+        const q = search.value.toLowerCase();
+        document.querySelectorAll('#cat-grid .cat-card').forEach(c => {
+          c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    /* ============ Countdown ============ */
+    (function () {
+      const root = document.getElementById('countdown'); if (!root) return;
+      const target = new Date(Date.now() + 7*24*60*60*1000);
+      const elD = root.querySelector('[data-d]'),
+            elH = root.querySelector('[data-h]'),
+            elM = root.querySelector('[data-m]'),
+            elS = root.querySelector('[data-s]');
+      const pad = n => String(n).padStart(2, '0');
+      function tick() {
+        const diff = Math.max(0, target - new Date());
+        elD.textContent = pad(Math.floor(diff / 86400000));
+        elH.textContent = pad(Math.floor((diff / 3600000) % 24));
+        elM.textContent = pad(Math.floor((diff / 60000) % 60));
+        elS.textContent = pad(Math.floor((diff / 1000) % 60));
+      }
+      tick(); setInterval(tick, 1000);
+    })();
+
+    /* ============ Stat-Counter Animation ============ */
+    (function () {
+      const counters = document.querySelectorAll('[data-counter]');
+      if (!counters.length) return;
+      const counterIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseFloat(el.dataset.counter);
+          const suffix = el.dataset.suffix || '';
+          const dur = 1600;
+          const start = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const val = Math.floor(eased * target);
+            el.textContent = val.toLocaleString('de-DE') + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+            else el.textContent = target.toLocaleString('de-DE') + suffix;
+          }
+          requestAnimationFrame(tick);
+          counterIO.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(el => counterIO.observe(el));
+    })();
+
+    /* ============ Huly CTA · Cursor-Glow Tracking ============ */
+    (() => {
+      const wraps = document.querySelectorAll('.huly-cta-wrap');
+      if (!wraps.length) return;
+      const REST_X = 115, INNER_HALF = 110, EASING = 0.12;
+      wraps.forEach((wrap) => {
+        const halo  = wrap.querySelector('.huly-cta-wrap__halo');
+        const btn   = wrap.querySelector('.huly-cta');
+        const inner = btn && btn.querySelector('.huly-cta__glow');
+        if (!halo || !btn || !inner) return;
+        let cIn = REST_X, tIn = REST_X, cHa = 0, tHa = 0, raf = null, hovering = false;
+        function loop() {
+          cIn += (tIn - cIn) * EASING;
+          cHa += (tHa - cHa) * EASING;
+          inner.style.transform = 'translate(' + cIn + 'px, -50%) translateZ(0)';
+          halo.style.transform  = 'translate(calc(-50% + ' + cHa + 'px), -50%) translateZ(0)';
+          if (!hovering && Math.abs(tIn - cIn) < 0.1 && Math.abs(tHa - cHa) < 0.1) { raf = null; return; }
+          raf = requestAnimationFrame(loop);
+        }
+        btn.addEventListener('mouseenter', () => { hovering = true; });
+        btn.addEventListener('mousemove', (e) => {
+          const r = btn.getBoundingClientRect();
+          const mx = e.clientX - r.left;
+          tIn = mx - INNER_HALF;
+          tHa = mx - r.width / 2;
+          if (!raf) raf = requestAnimationFrame(loop);
+        });
+        btn.addEventListener('mouseleave', () => {
+          hovering = false;
+          tIn = REST_X; tHa = 0;
+          if (!raf) raf = requestAnimationFrame(loop);
+        });
+      });
+    })();
+
+    /* ============ Animated Console — char-by-char typing + window grows ============ */
+    (function () {
+      const body = document.getElementById('js-console-body'); if (!body) return;
+
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+      function typeInto(el, text, charDelay = 22) {
+        return new Promise(async (resolve) => {
+          for (let i = 0; i < text.length; i++) {
+            el.textContent += text[i];
+            await sleep(charDelay + (Math.random() * 20 - 10));
+          }
+          resolve();
+        });
+      }
+
+      const lines = [
+        { type: 'kv', label: 'L1 deal',        value: '✓ flüchtig' },
+        { type: 'kv', label: 'L2 account',     value: '✓ persistent' },
+        { type: 'kv', label: 'L3 stakeholder', value: '✓ verlinkt' },
+        { type: 'kv', label: 'L4 pipeline',    value: '✓ live' },
+        { type: 'kv', label: 'L5 forecast',    value: '✓ historisch' },
+        { type: 'kv', label: 'L6 audit',       value: '✓ revisionssicher' },
+        { type: 'group', heading: 'Rollen aktiv',
+          items: ['bdr', 'ae', 'csm', 'sales-ops', 'rev-ops', 'enabler', 'closer', 'champion', 'auditor'] },
+        { type: 'group', heading: '12 Sales-Bereiche bereit',
+          items: ['outbound', 'discovery', 'closing', 'crm', 'forecasting', 'ai-automation',
+                  'csm', 'hiring', 'coaching', 'marketing-sync', 'compliance', 'tools'] },
+        { type: 'prompt', text: 'Bereit. Was baust Du heute?' },
+        { type: 'cursor' }
+      ];
+
+      // Wait until console enters viewport, then start typing
+      const startConsole = async () => {
+        for (const line of lines) {
+          if (line.type === 'kv') {
+            const lineEl = document.createElement('div');
+            lineEl.className = 'console__line';
+            const lblEl = document.createElement('span');
+            lblEl.className = 'console__lbl';
+            const valEl = document.createElement('span');
+            valEl.className = 'console__check';
+            lineEl.appendChild(lblEl);
+            lineEl.appendChild(valEl);
+            body.appendChild(lineEl);
+            await typeInto(lblEl, line.label, 18);
+            await sleep(60);
+            await typeInto(valEl, line.value, 22);
+            await sleep(120);
+          } else if (line.type === 'group') {
+            // heading
+            const headingEl = document.createElement('div');
+            headingEl.className = 'console__group-h';
+            body.appendChild(headingEl);
+            await typeInto(headingEl, line.heading, 18);
+            await sleep(80);
+            // items (printed as one fast typed chain)
+            const itemsEl = document.createElement('div');
+            itemsEl.className = 'console__items';
+            body.appendChild(itemsEl);
+            await typeInto(itemsEl, line.items.join(' · '), 9);
+            await sleep(150);
+          } else if (line.type === 'prompt') {
+            const lineEl = document.createElement('div');
+            lineEl.className = 'console__line';
+            const promptEl = document.createElement('span');
+            promptEl.className = 'console__prompt';
+            lineEl.appendChild(promptEl);
+            body.appendChild(lineEl);
+            await sleep(180);
+            await typeInto(promptEl, line.text, 24);
+            await sleep(200);
+          } else if (line.type === 'cursor') {
+            const lineEl = document.createElement('div');
+            lineEl.className = 'console__line';
+            lineEl.innerHTML = '<span class="console__prompt">$&nbsp;<span class="console__cursor-inline"></span></span>';
+            body.appendChild(lineEl);
+          }
+        }
+      };
+
+      const consoleEl = document.querySelector('.console');
+      const consoleIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            startConsole();
+            consoleIO.unobserve(consoleEl);
+          }
+        });
+      }, { threshold: 0.3 });
+      consoleIO.observe(consoleEl);
+    })();
+  </script>
+</body>
+</html>
