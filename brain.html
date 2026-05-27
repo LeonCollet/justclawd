@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JustClawd Brain · Dein Wissens-Backend</title>
+  <meta name="description" content="Die fertige Obsidian-Vault-Struktur, in der Deine JustClawd-Skills ihr Wissen ablegen, vernetzen und vermehren. 149 € einmalig." />
+  <meta name="theme-color" content="#0C2A4A" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==================================================================
+       JustClawd · Magic-UI Design System (gleich wie Hauptseite)
+       ================================================================== */
+    :root {
+      color-scheme: dark;
+      --background:  oklch(0% 0 0);
+      --foreground:  oklch(98% 0 0);
+      --jc-blue-50:  #E0F2FF;
+      --jc-blue-100: #BAE6FF;
+      --jc-blue-300: #9CECFC;
+      --jc-blue-400: #4D97FE;
+      --jc-blue-500: #0EA5E9;
+      --jc-blue-700: #0369A1;
+      --jc-blue-900: #0C2A4A;
+      --jc-deep:     #142F69;
+      --jc-space:    #050913;
+      --color-one:   var(--jc-blue-400);
+      --color-two:   var(--jc-blue-700);
+      --color-three: var(--jc-blue-100);
+      --primary:     oklch(98% 0 0);
+      --border:      oklch(35% 0 0);
+      --shimmer-width: 100px;
+      --border-beam-width: 1.5px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+    body { overflow-x: clip; padding-top: 56px; }
+    main { display: block; max-width: 100%; overflow-x: clip; position: relative; isolation: isolate; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* Backgrounds */
+    .bg-radial-jc {
+      background:
+        radial-gradient(60% 50% at 50% 0%,    rgba(77,151,254,0.20) 0%, transparent 60%),
+        radial-gradient(45% 40% at 80% 30%,   rgba(3,105,161,0.30)  0%, transparent 60%),
+        radial-gradient(40% 50% at 20% 60%,   rgba(156,236,252,0.10) 0%, transparent 60%),
+        var(--jc-space);
+    }
+    .bg-radial-soft {
+      background:
+        radial-gradient(60% 80% at 50% 0%, rgba(77,151,254,0.10) 0%, transparent 60%),
+        radial-gradient(60% 80% at 50% 100%, rgba(3,105,161,0.10) 0%, transparent 60%),
+        #000;
+    }
+    .bg-grid {
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+    }
+    .has-fade-top    { mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 100%); }
+    .has-fade-bottom { mask-image: linear-gradient(to top, transparent 0%, #000 7%, #000 100%);    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 7%, #000 100%); }
+    .has-fade-both   { mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%); }
+
+    .section-bridge {
+      position: relative; height: 1px; max-width: 720px; margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(77,151,254,0.45), transparent);
+      opacity: 0; transition: opacity 1.2s ease;
+    }
+    .section-bridge.is-revealed { opacity: 1; }
+    .section-bridge::before {
+      content: ''; position: absolute; left: 50%; top: 50%;
+      width: 80px; height: 80px; transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse, rgba(77,151,254,0.45) 0%, transparent 70%);
+      filter: blur(18px); pointer-events: none;
+    }
+
+    /* Layout */
+    .max-c { max-width: 1450px; margin: 0 auto; }
+    section.sect       { position: relative; padding: 5rem 1.5rem; }
+    section.sect-tight { position: relative; padding: 3rem 1.5rem; }
+    section.sect-wide  { position: relative; padding: 6rem 1.5rem; }
+    @media (max-width: 640px) {
+      section.sect       { padding: 3.5rem 1.25rem; }
+      section.sect-tight { padding: 2rem 1.25rem; }
+      section.sect-wide  { padding: 4rem 1.25rem; }
+      .sect-h { margin-bottom: 2rem; }
+      .sect-h h2 { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; line-height: 1.12 !important; }
+      .sect-h p  { font-size: 0.98rem; }
+      .prose { font-size: 0.98rem; }
+      .prose h2 { font-size: clamp(1.65rem, 7.5vw, 2.3rem) !important; line-height: 1.15 !important; }
+      .prose blockquote { padding: 0.5rem 0 0.5rem 1rem; }
+      .wf-card { padding: 1.15rem 1.25rem; gap: 0.75rem; }
+      .wf-card__title { font-size: 0.96rem; }
+      .wf-card__sub { font-size: 0.82rem; }
+      .why-item { padding: 1rem 1.1rem; gap: 0.85rem; }
+      .why-item h3 { font-size: 1rem; }
+      .why-item p { font-size: 0.88rem; }
+      details.faq { padding: 1.05rem 1.2rem; border-radius: 14px; }
+      details.faq summary { font-size: 0.96rem; gap: 0.6rem; }
+      details.faq summary .faq-icon { width: 28px; height: 28px; }
+      details.faq .faq-body { font-size: 0.9rem; }
+      .urgency { padding: 1.75rem 1.4rem; }
+      .urgency__price { font-size: 2.4rem; }
+      .urgency__price-row { gap: 0.5rem; }
+      .countdown { gap: 0.6rem; }
+      .qual-card { padding: 1.4rem 1.3rem; }
+      .qual-card h3 { font-size: 1.02rem; }
+      .qual-card li { font-size: 0.88rem; }
+      .deliv-item { padding: 0.75rem 1rem; font-size: 0.86rem; }
+      .huly-cta { height: 44px; padding: 0 22px; font-size: 11.5px; }
+      .slot-strip { padding: 1rem 1.25rem; }
+      .slot-strip__head { font-size: 0.82rem; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .img-placeholder { border-radius: 14px; font-size: 0.78rem; }
+      body { padding-top: 50px; }
+      .trust-strip { padding: 0.55rem 1rem; }
+      .trust-strip__inner { font-size: 0.78rem; gap: 0.6rem; }
+      .trust-strip__check { width: 24px; height: 24px; }
+    }
+    @media (max-width: 400px) {
+      .hero__h1 { font-size: clamp(1.65rem, 9.5vw, 2.4rem) !important; }
+      .sect-h h2 { font-size: clamp(1.5rem, 8.5vw, 2.25rem) !important; }
+    }
+    .sect-h { text-align: center; max-width: 56rem; margin: 0 auto 3rem; }
+    .sect-h.wide { max-width: 68rem; }
+    .sect-h h2 {
+      font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.035em;
+      line-height: 1.05; margin-top: 1.25rem;
+      text-wrap: balance; -webkit-text-wrap: balance;
+    }
+    .sect-h p  { color: rgba(255,255,255,0.6); margin-top: 1rem; line-height: 1.55; font-size: 1.0625rem; text-wrap: pretty; }
+    h1, h2, h3 { text-wrap: balance; -webkit-text-wrap: balance; }
+
+    /* Trust Strip (in JC Blau, statt Grün) */
+    .trust-strip {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      padding: 0.65rem 1.5rem;
+      background: rgba(5, 9, 19, 0.78);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border-bottom: 1px solid rgba(77, 151, 254, 0.18);
+      transform: translateY(-100%); opacity: 0;
+      animation: trust-in .7s cubic-bezier(.4,0,.2,1) forwards 100ms;
+    }
+    @keyframes trust-in { to { transform: translateY(0); opacity: 1; } }
+    .trust-strip__inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 0.85rem; font-size: 0.85rem; color: rgba(255,255,255,0.92); }
+    .trust-strip__check {
+      width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%;
+      background: rgba(77, 151, 254, 0.18);
+      border: 1px solid rgba(156, 236, 252, 0.50);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--jc-blue-300);
+    }
+    .trust-strip__title { font-weight: 600; }
+    .trust-strip__sub   { color: rgba(255,255,255,0.6); margin-left: 0.5rem; }
+    @media (max-width: 720px) { .trust-strip__sub { display: none; } }
+
+    /* Pills */
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 0.95rem; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      background: rgba(77,151,254,0.10); border: 1px solid rgba(77,151,254,0.30); color: var(--jc-blue-100);
+      position: relative; overflow: hidden;
+    }
+    .pill::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.30) 50%, transparent 70%);
+      background-size: 200% 100%;
+      animation: shimmer 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .pill.cyan  { background: rgba(156,236,252,0.10); border-color: rgba(156,236,252,0.30); color: var(--jc-blue-300); }
+    .pill.deep  { background: rgba(40,100,201,0.14);  border-color: rgba(40,100,201,0.40);  color: var(--jc-blue-100); }
+    @keyframes shimmer {
+      0%, 90%, 100% { background-position: calc(-100% - var(--shimmer-width)) 0; }
+      30%, 60%      { background-position: calc(100%  + var(--shimmer-width)) 0; }
+    }
+
+    /* Headline gradients (gleich wie Hauptseite) */
+    .text-wg-grad         { background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.55) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .text-cyan-royal-grad { background: linear-gradient(120deg, var(--jc-blue-100) 0%, var(--jc-blue-300) 35%, var(--jc-blue-400) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .text-cyan-deep-grad  { background: linear-gradient(120deg, var(--jc-blue-100) 0%, var(--jc-blue-300) 30%, var(--jc-blue-400) 60%, var(--jc-blue-700) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* Huly CTA · Cursor-Tracking-Glow (gleich wie Hauptseite) */
+    .huly-cta-wrap { position: relative; display: inline-flex; isolation: isolate; }
+    .huly-cta-wrap__halo {
+      position: absolute; z-index: -1; top: 50%; left: 50%;
+      width: 380px; height: 200px;
+      transform: translate(-50%, -50%) translateZ(0);
+      pointer-events: none; will-change: transform, opacity;
+      background: radial-gradient(45% 50% at 50% 50%,
+        rgba(255, 255, 255, 0.42) 0%,
+        rgba(224, 242, 255, 0.35) 12%,
+        rgba(156, 236, 252, 0.28) 28%,
+        rgba(77, 151, 254,  0.18) 48%,
+        rgba(14, 165, 233,  0.10) 65%,
+        rgba(3,  105, 161,  0.03) 82%,
+        rgba(3,  105, 161,  0)    100%);
+      filter: blur(22px); opacity: 0;
+      transition: opacity .35s ease-out;
+    }
+    .huly-cta-wrap:hover .huly-cta-wrap__halo { opacity: 1; }
+    .huly-cta {
+      position: relative; z-index: 10;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 28px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 9999px;
+      background: #ECF5FB;
+      font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: -0.015em;
+      color: var(--jc-blue-900); white-space: nowrap; cursor: pointer;
+      transition: color .2s cubic-bezier(.4,0,.2,1),
+                  background-color .2s cubic-bezier(.4,0,.2,1),
+                  border-color .2s cubic-bezier(.4,0,.2,1),
+                  transform .25s cubic-bezier(.4,0,.2,1);
+    }
+    .huly-cta:hover { background: #fff; transform: translateY(-1px); }
+    .huly-cta__glow {
+      position: absolute; z-index: -1; top: 50%; left: 0;
+      width: 220px; height: 121px;
+      transform: translate(115px, -50%) translateZ(0);
+      pointer-events: none; will-change: transform;
+    }
+    .huly-cta__glow::before {
+      content: ""; position: absolute; top: 50%; left: 50%; width: 121px; height: 121px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(50% 50% at 50% 50%,
+        #FFFFFF 3.5%, var(--jc-blue-100) 26.5%, var(--jc-blue-300) 37.5%,
+        rgba(77, 151, 254, 0.50) 49%, rgba(3, 105, 161, 0) 92.5%);
+    }
+    .huly-cta__glow::after {
+      content: ""; position: absolute; top: 50%; left: 50%; width: 220px; height: 103px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(48% 50% at 50% 50%,
+        #FFFFFF 29%, var(--jc-blue-50) 48.5%, var(--jc-blue-100) 60.71%,
+        rgba(186, 230, 255, 0) 100%);
+      filter: blur(6px);
+    }
+    .huly-cta__arrow { width: 17px; height: 9px; color: var(--jc-blue-900); transition: transform .25s ease; }
+    .huly-cta:hover .huly-cta__arrow { transform: translateX(3px); }
+
+    .price-recap {
+      margin-top: 1rem; font-size: 0.86rem; color: rgba(255,255,255,0.55);
+    }
+    .price-recap strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+    .price-recap .strike { text-decoration: line-through; color: rgba(255,255,255,0.35); margin-right: 0.4rem; }
+
+    /* Slot Counter Strip */
+    .slot-strip {
+      max-width: 38rem; margin: 0 auto;
+      padding: 1.1rem 1.6rem;
+      border: 1px solid rgba(77,151,254,0.30);
+      background: rgba(77,151,254,0.06);
+      border-radius: 18px;
+    }
+    .slot-strip__head {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; font-size: 0.92rem; color: var(--jc-blue-100);
+      margin-bottom: 0.8rem;
+    }
+    .slot-strip__head .left { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+    .slot-strip__head .right { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
+    .slot-strip__bar {
+      width: 100%; height: 6px; border-radius: 999px;
+      background: rgba(255,255,255,0.06); overflow: hidden;
+      position: relative;
+    }
+    .slot-strip__bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--jc-blue-300), var(--jc-blue-400), var(--jc-blue-500));
+      border-radius: 999px;
+      box-shadow: 0 0 16px rgba(77,151,254,0.6);
+      transition: width 1.4s cubic-bezier(.4,0,.2,1);
+    }
+    .slot-strip__bar-fill::after {
+      content: ''; position: absolute; right: 0; top: 0; height: 100%; width: 30px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7));
+    }
+
+    /* Reveal */
+    @keyframes fade-in { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: none; } }
+    @keyframes fade-up { 0% { opacity: 0; transform: translateY(28px); } 100% { opacity: 1; transform: none; } }
+    .fade-in { animation: fade-in .8s cubic-bezier(.4,0,.2,1) both; }
+    .fade-up { opacity: 0; }
+    .fade-up.is-revealed { animation: fade-up 1s cubic-bezier(.4,0,.2,1) both; }
+    .stagger > * { opacity: 0; }
+    .stagger.is-revealed > * { animation: fade-up 1s cubic-bezier(.4,0,.2,1) both; animation-delay: 600ms; }
+    .stagger.is-revealed > *:nth-child(1) { animation-delay:   0ms; }
+    .stagger.is-revealed > *:nth-child(2) { animation-delay:  60ms; }
+    .stagger.is-revealed > *:nth-child(3) { animation-delay: 120ms; }
+    .stagger.is-revealed > *:nth-child(4) { animation-delay: 180ms; }
+    .stagger.is-revealed > *:nth-child(5) { animation-delay: 240ms; }
+    .stagger.is-revealed > *:nth-child(6) { animation-delay: 300ms; }
+    .stagger.is-revealed > *:nth-child(7) { animation-delay: 360ms; }
+    .stagger.is-revealed > *:nth-child(8) { animation-delay: 420ms; }
+
+    /* Long-form prose (Pain sections) */
+    .prose {
+      max-width: 56rem; margin: 0 auto;
+      color: rgba(255,255,255,0.78); line-height: 1.65; font-size: 1.0625rem;
+    }
+    .prose h2 {
+      color: #fff;
+      font-size: clamp(2rem, 4.4vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.035em; line-height: 1.1;
+      margin: 0 auto 1.75rem;
+      text-align: center;
+      max-width: 56rem;
+      text-wrap: balance; -webkit-text-wrap: balance;
+    }
+    .prose p { margin-bottom: 1.2rem; text-wrap: pretty; }
+    .prose strong { color: #fff; font-weight: 600; }
+    .prose blockquote {
+      border-left: 2px solid var(--jc-blue-400);
+      padding: 0.6rem 0 0.6rem 1.4rem;
+      margin: 1.5rem 0;
+      color: rgba(255,255,255,0.92);
+      background: rgba(77,151,254,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Workflow Card Grid (15 modules) */
+    .wf-grid {
+      max-width: 76rem; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    }
+    @media (min-width: 720px) { .wf-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } }
+    @media (min-width: 1100px) { .wf-grid { grid-template-columns: repeat(3, 1fr); } }
+    .wf-card {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      transition: border-color .3s ease, transform .3s ease, background .3s ease, box-shadow .3s ease;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .wf-card:hover {
+      border-color: rgba(77,151,254,0.40);
+      background: rgba(77,151,254,0.04);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px -16px rgba(77,151,254,0.40);
+    }
+    .wf-card__icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      background: rgba(77,151,254,0.10); border: 1px solid rgba(77,151,254,0.30);
+      color: var(--jc-blue-100);
+    }
+    .wf-card__num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+    .wf-card__title {
+      font-size: 1rem; font-weight: 600; color: #fff;
+      letter-spacing: -0.01em; margin: 0.15rem 0 0.4rem;
+    }
+    .wf-card__sub {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5;
+    }
+
+    /* 4-Deliverable Box */
+    .deliv-box {
+      max-width: 76rem; margin: 2.5rem auto 0;
+      display: grid; grid-template-columns: 1fr; gap: 0.85rem;
+    }
+    @media (min-width: 700px) { .deliv-box { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1100px) { .deliv-box { grid-template-columns: repeat(4, 1fr); } }
+    .deliv-item {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      padding: 0.85rem 1.15rem;
+      border: 1px solid rgba(156,236,252,0.18);
+      background: rgba(156,236,252,0.04);
+      border-radius: 12px;
+      color: rgba(255,255,255,0.92); font-size: 0.92rem;
+    }
+    .deliv-item svg { color: var(--jc-blue-300); flex-shrink: 0; }
+
+    /* Image Placeholder + Rendered Image Slot */
+    .img-placeholder {
+      position: relative;
+      max-width: 80rem; margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      border: 1px solid rgba(156,236,252,0.18);
+      background:
+        repeating-linear-gradient(45deg, rgba(77,151,254,0.04), rgba(77,151,254,0.04) 10px, rgba(77,151,254,0.06) 10px, rgba(77,151,254,0.06) 20px),
+        rgba(5, 9, 19, 0.6);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.9rem; font-weight: 500;
+      box-shadow: 0 30px 80px -25px rgba(77,151,254,0.30);
+      overflow: hidden;
+    }
+    .img-placeholder.small { max-width: 36rem; aspect-ratio: 4 / 3; }
+    .img-placeholder.has-image {
+      background: rgba(5, 9, 19, 0.4);
+      color: transparent;
+    }
+    .img-placeholder.has-image img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* Why-different items */
+    .why-list {
+      max-width: 60rem; margin: 0 auto;
+      display: grid; gap: 1rem;
+    }
+    @media (min-width: 900px) { .why-list { grid-template-columns: repeat(2, 1fr); } }
+    .why-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      border-radius: 14px;
+      transition: border-color .3s ease, background .3s ease, transform .3s ease;
+    }
+    .why-item:hover { border-color: rgba(77,151,254,0.40); background: rgba(77,151,254,0.04); transform: translateY(-2px); }
+    .why-item__icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      border-radius: 8px;
+      background: rgba(77,151,254,0.12); border: 1px solid rgba(77,151,254,0.30);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--jc-blue-300);
+    }
+    .why-item h3 { color: #fff; font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .why-item p  { color: rgba(255,255,255,0.65); font-size: 0.92rem; line-height: 1.6; }
+
+    /* For-you / Not-for-you */
+    .qual-grid {
+      max-width: 68rem; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    }
+    @media (min-width: 760px) { .qual-grid { grid-template-columns: repeat(2, 1fr); } }
+    .qual-card {
+      padding: 1.6rem 1.8rem; border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+    }
+    .qual-card.is-yes { border-color: rgba(77,151,254,0.30); background: rgba(77,151,254,0.04); box-shadow: 0 30px 80px -30px rgba(77,151,254,0.30); }
+    .qual-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.55rem; }
+    .qual-card.is-yes h3 { color: var(--jc-blue-100); }
+    .qual-card.is-no  h3 { color: rgba(255,200,210,0.92); }
+    .qual-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+    .qual-card li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.92rem; line-height: 1.5; }
+    .qual-card.is-yes li { color: rgba(186,230,255,0.92); }
+    .qual-card.is-no  li { color: rgba(255,200,210,0.78); }
+    .qual-card svg { flex-shrink: 0; margin-top: 0.15rem; }
+    .qual-card.is-yes svg { color: var(--jc-blue-300); }
+    .qual-card.is-no  svg { color: rgba(255,150,170,0.7); }
+
+    /* Urgency CTA */
+    .urgency {
+      max-width: 38rem; margin: 0 auto;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(77,151,254,0.40);
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(77,151,254,0.10), transparent 60%),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 30px 80px -20px rgba(77,151,254,0.45);
+      text-align: center;
+    }
+    .urgency__price-row { display: flex; align-items: baseline; justify-content: center; gap: 0.7rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .urgency__price { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; }
+    .urgency__strike { font-size: 1.15rem; color: rgba(255,255,255,0.4); text-decoration: line-through; }
+    .urgency__tag { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+    .urgency__hint { font-size: 0.8rem; color: var(--jc-blue-300); margin-top: 0.4rem; margin-bottom: 1.6rem; }
+
+    /* Premium FAQ — Card-Look mit Hover-Glow */
+    .faq-list { max-width: 56rem; margin: 0 auto; display: grid; gap: 0.85rem; }
+    details.faq {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 1.3rem 1.6rem;
+      transition: border-color .3s ease, background .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+    details.faq::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(77,151,254,0.40), transparent);
+      opacity: 0;
+      transition: opacity .35s ease;
+      border-radius: 16px 16px 0 0;
+    }
+    details.faq:hover {
+      border-color: rgba(77,151,254,0.32);
+      background: linear-gradient(180deg, rgba(77,151,254,0.05), rgba(255,255,255,0.005));
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px -16px rgba(77,151,254,0.30);
+    }
+    details.faq:hover::before { opacity: 1; }
+    details.faq[open] {
+      border-color: rgba(77,151,254,0.45);
+      background:
+        linear-gradient(180deg, rgba(77,151,254,0.08), rgba(255,255,255,0.005) 40%),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 16px 40px -16px rgba(77,151,254,0.40);
+    }
+    details.faq[open]::before { opacity: 1; }
+    details.faq summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-weight: 600; font-size: 1.04rem; color: #fff;
+      transition: color .25s ease;
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary > span:first-child { letter-spacing: -0.01em; }
+    details.faq summary .faq-icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 999px;
+      background: rgba(77,151,254,0.10);
+      border: 1px solid rgba(77,151,254,0.28);
+      color: var(--jc-blue-300);
+      transition: transform .4s cubic-bezier(.4,0,.2,1), background .25s ease, border-color .25s ease;
+    }
+    details.faq summary .faq-icon svg { width: 14px; height: 14px; }
+    details.faq[open] summary .faq-icon {
+      transform: rotate(180deg);
+      background: rgba(77,151,254,0.20);
+      border-color: rgba(77,151,254,0.50);
+    }
+    details.faq[open] summary { color: var(--jc-blue-100); }
+    details.faq:hover summary { color: var(--jc-blue-100); }
+    details.faq .faq-body {
+      color: rgba(255,255,255,0.72);
+      padding-top: 1rem;
+      margin-top: 0.85rem;
+      border-top: 1px solid rgba(77,151,254,0.10);
+      line-height: 1.7; font-size: 0.96rem;
+      animation: fade-up .4s cubic-bezier(.4,0,.2,1) both;
+    }
+
+    /* Decline link */
+    .decline-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 1px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .decline-link:hover { color: rgba(255,255,255,0.75); border-bottom-color: rgba(255,255,255,0.35); }
+
+    /* Hero h1 (kompakter, max 3 Zeilen) */
+    .hero__h1 {
+      font-size: clamp(2rem, 4.4vw, 3.75rem);
+      font-weight: 700; letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin: 1.5rem 0 1.5rem;
+      max-width: 50rem; margin-left: auto; margin-right: auto;
+      text-wrap: balance; -webkit-text-wrap: balance;
+    }
+    @media (max-width: 640px) {
+      .hero__h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+  <!-- Trust Strip oben -->
+  <div class="trust-strip">
+    <div class="trust-strip__inner">
+      <span class="trust-strip__check">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L20 6"/></svg>
+      </span>
+      <span class="trust-strip__title">Dein JustClawd-Zugang ist freigeschaltet.</span>
+      <span class="trust-strip__sub">Bevor Du startest. Dieses Upgrade bekommst Du genau jetzt.</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="sect-wide bg-radial-jc has-fade-bottom" style="text-align: center;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none;"></div>
+    <div class="max-c" style="position: relative; max-width: 56rem;">
+
+      <span class="pill cyan fade-in" style="margin-bottom: 1.5rem;">Einmaliges Upgrade. Nur jetzt.</span>
+
+      <h1 class="hero__h1 fade-in" style="animation-delay: .1s;">
+        <span class="text-wg-grad">So baust Du das Wissens-Backend,</span><br />
+        <span class="text-cyan-royal-grad">das Deine Skills erst richtig stark macht.</span>
+      </h1>
+
+      <p class="fade-in" style="font-size: 1.0625rem; line-height: 1.55; color: rgba(255,255,255,0.7); max-width: 38rem; margin: 0 auto 2.5rem; animation-delay: .2s; text-wrap: pretty;">
+        Die Skills funktionieren ohne Brain. Mit Brain werden sie <strong style="color: var(--jc-blue-100); font-weight: 600;">5× besser.</strong>
+        Weil sie wissen, wer Du bist, was Du verkaufst, an wen.
+        Und <strong style="color: var(--jc-blue-100); font-weight: 600;">was schon mal funktioniert hat.</strong>
+      </p>
+
+      <div class="fade-in" style="display: flex; justify-content: center; animation-delay: .3s;">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="#urgency" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Ja, Brain-Zugang sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <p class="price-recap fade-in" style="animation-delay: .4s;">Einmalig <span class="strike">249&nbsp;€</span><strong>149&nbsp;€</strong>, nur jetzt als Pionier-Preis.</p>
+
+      <div class="img-placeholder has-image fade-in" style="margin-top: 4rem; animation-delay: .5s;">
+        <img src="https://lh3.googleusercontent.com/d/1KRD2pZt1RpVDzHI0vUTffoCyCqTgvKPA=w1600"
+             alt="JustClawd Brain · Vernetztes Wissens-Backend"
+             loading="lazy"
+             onerror="this.parentElement.classList.remove('has-image'); this.parentElement.innerHTML='[ Bild lädt nicht · Drive-Permission prüfen ]'; this.parentElement.style.color='rgba(255,200,200,0.6)';" />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- PAIN 1 -->
+  <section class="sect">
+    <div class="max-c">
+      <article class="prose fade-up">
+        <h2><span class="text-wg-grad">Dein Wissen ist überall.</span><br /><span class="text-cyan-deep-grad">Nur nicht da, wo Du es brauchst.</span></h2>
+
+        <p>Dein Mitarbeiter ist im Urlaub. Wo war nochmal das Briefing für den Kunden, der morgen Vormittag anruft?</p>
+
+        <p>Jede Frage wartet, bis er zurück ist. Drei Tage Stillstand pro Krankheit. Eine Woche pro Urlaub. Und das, obwohl er Dir die Antwort vor 4 Wochen schon mal gegeben hat. Nur eben mündlich. Irgendwo im Standup.</p>
+
+        <p>Oder die Frage „<strong>Was haben wir damals mit Kunde X besprochen?</strong>" Vor 14 Monaten. In einem Mail-Thread mit 47 Antworten. Findest Du nie wieder. Du fragst nochmal. Der Kunde fragt sich, ob er Dir nochmal vertrauen kann.</p>
+
+        <p>Oder „<strong>Ich habe das schon mal gebaut. Wo ist die Datei?</strong>" In einem von 14 Ordnern. In OneDrive, Notion oder auf dem Desktop. Du baust es nochmal. 2 Stunden Lebenszeit weg.</p>
+
+        <blockquote>
+          47 % der Wissensarbeiter verbringen 1 bis 5 Stunden pro Tag damit, nach Informationen zu suchen. Bei 10 Leuten in Deinem Betrieb sind das 2.200 Stunden pro Jahr. Fast eine Vollzeitstelle, verbrannt nur im Suchen.
+        </blockquote>
+
+        <p>Das Brain räumt das auf. Eine Vault-Struktur, in der Wissen lebt. Skills, die darin lesen und schreiben. Mitarbeiter, die finden, was sie brauchen.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PAIN 2 -->
+  <section class="sect">
+    <div class="max-c">
+      <article class="prose fade-up">
+        <h2><span class="text-wg-grad">Mitarbeiter geht.</span><br /><span class="text-cyan-deep-grad">Sein Wissen geht mit.</span></h2>
+
+        <p>Du arbeitest 6 Jahre mit einem guten Senior zusammen. Er kennt jeden Kunden. Er weiß, welche Pricing-Verhandlung mit welchem Account-Manager läuft. Er weiß, wo das Discovery-Brief von 2024 liegt.</p>
+
+        <p>Dann geht er. Aus welchem Grund auch immer.</p>
+
+        <p>Und jetzt? Die nächsten 6 Monate erklärst Du dem Nachfolger Dinge, die der Senior längst dokumentiert hätte. <strong>Wenn es ein System gegeben hätte.</strong> Du verlierst Geschwindigkeit. Du verlierst Tiefe. Du verlierst Kunden, weil die merken, dass jetzt jemand neues dran ist, der nicht mehr weiß, was läuft.</p>
+
+        <p>Mit dem Brain bleibt das Wissen. Auch wenn der Mensch geht.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Slot Counter Strip -->
+  <section class="sect-tight">
+    <div class="slot-strip fade-up">
+      <div class="slot-strip__head">
+        <span class="left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Bereits <span id="slot-taken">7</span> von <span id="slot-total">30</span> Plätzen reserviert
+        </span>
+        <span class="right"><span id="slot-left">23</span> übrig</span>
+      </div>
+      <div class="slot-strip__bar"><div class="slot-strip__bar-fill" id="slot-bar" style="width: 0%;"></div></div>
+    </div>
+  </section>
+
+  <!-- Promise -->
+  <section class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Das JustClawd-Brain</span>
+        <h2><span class="text-wg-grad">Das hier ist kein Tool.</span><br /><span class="text-cyan-royal-grad">Das hier ist Dein Wissens-Backend.</span></h2>
+        <p>Eine komplette Obsidian-Vault-Struktur. Vorkonfiguriert für IT-Geschäftsmodelle. JustClawd liest und schreibt darin. Aus „irgendwo abgelegt" wird „jederzeit auffindbar".</p>
+        <p>10 Top-Level-Ordner. 40+ Templates. 60+ Skills, die mit dem Vault sprechen. Kein leeres Notion mit guten Vorsätzen. Eine fertige Welt für Dein Geschäft.</p>
+      </div>
+
+      <article class="prose fade-up" style="text-align: center; max-width: 38rem;">
+        <blockquote style="text-align: left;">
+          Mehr als ein Notiz-Ordner. Es ist das System, in dem Deine Skills ihr Wissen halten und vermehren. Jeden Tag.
+        </blockquote>
+      </article>
+    </div>
+  </section>
+
+  <!-- 15-Workflow Grid -->
+  <section class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill cyan">15 Brain-Bausteine</span>
+        <h2><span class="text-wg-grad">15 Bausteine.</span><br /><span class="text-cyan-royal-grad">Sofort einsatzbereit.</span></h2>
+      </div>
+
+      <div class="wf-grid stagger">
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></div>
+          <div><div class="wf-card__num">01</div><div class="wf-card__title">Vault-Struktur</div><div class="wf-card__sub">10 Top-Level-Ordner mit klaren Regeln, was wo lebt.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+          <div><div class="wf-card__num">02</div><div class="wf-card__title">Activity-Log</div><div class="wf-card__sub">Jeder Tag, jede Entscheidung dokumentiert. Nie wieder „Was war nochmal?"</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="wf-card__num">03</div><div class="wf-card__title">Customer-Memory</div><div class="wf-card__sub">Pro Kunde ein Ordner. Calls, Mails, Verträge. Alles verlinkt.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><div class="wf-card__num">04</div><div class="wf-card__title">Discovery-Briefs</div><div class="wf-card__sub">Vorlage und Archiv. Jedes Erstgespräch landet hier, vor und nach dem Call.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><div class="wf-card__num">05</div><div class="wf-card__title">EOD-Reports</div><div class="wf-card__sub">Tagesabschluss in 5 Minuten. Was geschafft, was offen, was kippt.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div><div class="wf-card__num">06</div><div class="wf-card__title">Pricing-Archiv</div><div class="wf-card__sub">Welcher Kunde bekam welchen Preis. Schnell beantwortet, statt geraten.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 13h6M9 17h6"/></svg></div>
+          <div><div class="wf-card__num">07</div><div class="wf-card__title">SOPs-Library</div><div class="wf-card__sub">Wie macht ihr das. Steht hier. Onboarding in Tagen statt Monaten.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
+          <div><div class="wf-card__num">08</div><div class="wf-card__title">Content-Drafts</div><div class="wf-card__sub">Jeder LinkedIn-Post, jede Case-Study versioniert. Wieder verwendbar.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div>
+          <div><div class="wf-card__num">09</div><div class="wf-card__title">Skills-Verzeichnis</div><div class="wf-card__sub">Welcher Skill macht was. Welche Version. Welche Updates.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><div class="wf-card__num">10</div><div class="wf-card__title">Meeting-Notes</div><div class="wf-card__sub">Jedes Meeting protokolliert. Verlinkt mit Kunde, Projekt und Folgegespräch.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="wf-card__num">11</div><div class="wf-card__title">Onboarding-Pack</div><div class="wf-card__sub">Neue MA lesen den Vault, kennen das Geschäft in 3 Tagen.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          <div><div class="wf-card__num">12</div><div class="wf-card__title">Tag-System</div><div class="wf-card__sub">Suche nach Thema, Status, Owner oder Datum. Alles in Sekunden auffindbar.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <div><div class="wf-card__num">13</div><div class="wf-card__title">Cross-Linking</div><div class="wf-card__sub">Alles verbunden. Kunde mit Projekt, Mitarbeiter, Call und Vertrag.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg></div>
+          <div><div class="wf-card__num">14</div><div class="wf-card__title">Migrations-Pack</div><div class="wf-card__sub">Wechsel von Notion, OneDrive oder Drive. Schritt für Schritt erklärt.</div></div>
+        </div>
+
+        <div class="wf-card">
+          <div class="wf-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="wf-card__num">15</div><div class="wf-card__title">Backup &amp; Versionierung</div><div class="wf-card__sub">Vault liegt in Deiner Cloud. Du behältst die volle Kontrolle.</div></div>
+        </div>
+      </div></div>
+
+      <!-- 4 Deliverables Box -->
+      <div class="deliv-box fade-up">
+        <div class="deliv-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+          Komplette Vault-Struktur, sofort einsatzbereit
+        </div>
+        <div class="deliv-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          40+ Templates für Activity-Log, Customer-Memory, EOD und Meetings
+        </div>
+        <div class="deliv-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/></svg>
+          Migrations-Anleitung von Notion, OneDrive und Google Drive
+        </div>
+        <div class="deliv-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          2-Stunden-Walkthrough-Video, kein Live-Termin nötig
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 0.6rem;">
+          <div class="huly-cta-wrap">
+            <span class="huly-cta-wrap__halo"></span>
+            <a href="#urgency" class="huly-cta">
+              <span class="huly-cta__glow"></span>
+              Ja, Brain-Zugang sichern
+              <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+          <p class="price-recap">Einmalig <span class="strike">249&nbsp;€</span><strong>149&nbsp;€</strong>, nur jetzt als Pionier-Preis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- Nicht nur Videos -->
+  <section class="sect bg-radial-soft has-fade-both">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Was wirklich drin ist</span>
+        <h2><span class="text-wg-grad">Eine fertige Welt.</span><br /><span class="text-cyan-royal-grad">Sofort installiert.</span></h2>
+        <p>Jeder Ordner, jedes Template, jeder Workflow ist vorkonfiguriert und dokumentiert. Du lädst das ZIP, ziehst es in Deinen Obsidian-Sync-Ordner und arbeitest los.</p>
+      </div>
+
+      <div class="img-placeholder has-image fade-up">
+        <img src="https://lh3.googleusercontent.com/d/1zTeCd-nujmUn4DROz6QAMZ-A3GleOE15=w1600"
+             alt="JustClawd Brain · Vault-Übersicht im Detail"
+             loading="lazy"
+             onerror="this.parentElement.classList.remove('has-image'); this.parentElement.innerHTML='[ Bild lädt nicht · Drive-Permission prüfen ]'; this.parentElement.style.color='rgba(255,200,200,0.6)';" />
+      </div>
+
+      <div class="why-list fade-up" style="margin-top: 3rem;">
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l4.5 4.5L20 6"/></svg></span>
+          <div>
+            <h3>Vault-Struktur, die mitwächst</h3>
+            <p>10 Top-Level-Ordner mit klaren Regeln. Du kannst erweitern, reduzieren, umbauen. Die Struktur hält.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l4.5 4.5L20 6"/></svg></span>
+          <div>
+            <h3>Skills lesen und schreiben im Vault</h3>
+            <p>JustClawd greift auf den Vault zu. Posts werden aus echten Projekten generiert. Anfragen mit echtem Kundenkontext beantwortet.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l4.5 4.5L20 6"/></svg></span>
+          <div>
+            <h3>Activity-Log, das nichts vergisst</h3>
+            <p>Jede Aktion, jede Entscheidung landet automatisch im Log. Du fragst nie wieder „Was haben wir damals gemacht?".</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l4.5 4.5L20 6"/></svg></span>
+          <div>
+            <h3>Customer-Memory pro Account</h3>
+            <p>Jeder Kunde hat einen Ordner. Alle Calls, Mails, Entscheidungen, verlinkt und durchsuchbar. Auch nach 3 Jahren.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- Warum das hier anders funktioniert -->
+  <section class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Der Unterschied</span>
+        <h2><span class="text-wg-grad">Mitarbeiter im Kopf</span><br /><span class="text-cyan-royal-grad">oder Wissen im Vault.</span></h2>
+      </div>
+
+      <div class="why-list fade-up">
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+          <div>
+            <h3>Wissen liegt im Vault</h3>
+            <p>Nicht mehr in den Köpfen Deiner Mitarbeiter. Jeder im Team hat Zugriff. Jederzeit, ohne nachzufragen.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
+          <div>
+            <h3>Kündigung tut nicht mehr weh</h3>
+            <p>Mitarbeiter geht. Wissen bleibt. Sein Activity-Log, seine Customer-Notes und Projekt-Briefings sind im Vault.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div>
+            <h3>Antworten finden statt fragen</h3>
+            <p>Jeder findet die Antwort per Suche. Du beantwortest nicht zwölfmal pro Quartal dieselbe Frage.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-item__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+          <div>
+            <h3>Onboarding in 3 Tagen statt 3 Monaten</h3>
+            <p>Neuer Mitarbeiter? Vault öffnen, lesen, loslegen. Statt monatelang Schatten zu sein und Senior-Zeit zu fressen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-bridge fade-up"></div>
+
+  <!-- Ist das was für Dich? -->
+  <section class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">Ehrliche Selbstprüfung</span>
+        <h2 class="text-wg-grad">Ist das was für Dich?</h2>
+      </div>
+
+      <div class="qual-grid fade-up">
+        <div class="qual-card is-yes">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l4.5 4.5L20 6"/></svg>
+            Ja, wenn Du …
+          </h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Du gerade JustClawd gekauft hast und Skills mit echtem Kontext füttern willst</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Du Wissen im Team verlierst, wenn Mitarbeiter wechseln oder im Urlaub sind</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Du regelmäßig 20 Minuten suchst, bis Du eine Datei wiederfindest</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Du Mitarbeiter onboarden willst, ohne 3 Monate Schatten zu verbrennen</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Du Obsidian kennst oder bereit bist, 2 Stunden zum Einstieg zu investieren</li>
+          </ul>
+        </div>
+        <div class="qual-card is-no">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Nein, wenn Du …
+          </h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du Solo bist, alles im Kopf hast und keinen Mitarbeiter onboarden musst</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du keine 2 Stunden Walkthrough investieren willst</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du Notion, OneDrive oder Drive bereits perfekt strukturiert hast</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du JustClawd nicht gekauft hast (ohne die Skills bringt das Brain wenig)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du ein DIY-Tutorial suchst, kein fertiges Setup willst</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Urgency CTA -->
+  <section id="urgency" class="sect-wide bg-radial-jc has-fade-both" style="text-align: center;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.5;"></div>
+    <div class="max-c" style="position: relative;">
+      <div class="sect-h fade-up">
+        <span class="pill">Einmaliges Angebot</span>
+        <h2><span class="text-wg-grad">Dieses Upgrade siehst Du</span><br /><span class="text-cyan-deep-grad">genau einmal. Jetzt.</span></h2>
+        <p>Sobald Du diese Seite verlässt, ist der Pionier-Preis weg. Beim nächsten Besuch zahlst Du den vollen Preis von 249&nbsp;€.</p>
+      </div>
+
+      <div class="urgency fade-up">
+        <div class="urgency__price-row">
+          <span class="urgency__strike">249&nbsp;€</span>
+          <span class="urgency__price">149&nbsp;€</span>
+          <span class="urgency__tag">einmalig</span>
+        </div>
+        <p class="urgency__hint">Pionier-Preis, gültig nur jetzt. Lebenslanger Zugang inklusive Updates.</p>
+
+        <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+          <div class="huly-cta-wrap">
+            <span class="huly-cta-wrap__halo"></span>
+            <a href="mailto:hello@justclose.de?subject=Playbook%20Pionier-Zugang" class="huly-cta">
+              <span class="huly-cta__glow"></span>
+              Ja, Brain-Zugang sichern
+              <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.45);">Einmal zahlen. Lebenslang Zugang. Lebenslang Updates. Inklusive aller zukünftigen Vault-Updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sect">
+    <div class="max-c">
+      <div class="sect-h fade-up">
+        <span class="pill">FAQ</span>
+        <h2 class="text-wg-grad">Häufige Fragen</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq" open>
+          <summary><span>Brauche ich Obsidian dafür?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Ja. Obsidian ist kostenlos verfügbar. Setup-Anleitung liegt bei. Du installierst es in 5 Minuten, ziehst den Vault rein, und arbeitest los.</div>
+        </details>
+
+        <details class="faq">
+          <summary><span>Funktioniert das auch ohne die 39 €-Skills?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Theoretisch ja. Praktisch nein. Die Skills sind das, was den Vault zum Leben erweckt. Sie lesen und schreiben darin. Ohne Skills hast Du nur einen leeren Notiz-Ordner.</div>
+        </details>
+
+        <details class="faq">
+          <summary><span>Kann mein Team das mitnutzen?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Ja. Obsidian lässt sich via OneDrive, Google Drive oder Dropbox teilen. Wir liefern Setup-Anleitung für Teams mit.</div>
+        </details>
+
+        <details class="faq">
+          <summary><span>Wie lange dauert das Setup?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">ZIP herunterladen, in Deinen Obsidian-Sync-Ordner ziehen, fertig. 60 Sekunden. Plus 2 Stunden Walkthrough-Video, wenn Du den Vault wirklich verstehen willst.</div>
+        </details>
+
+        <details class="faq">
+          <summary><span>Was, wenn ich kein Obsidian mag?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Die Struktur lässt sich in Notion oder andere Markdown-Tools übertragen. Aber wir liefern sie nativ für Obsidian, weil es einfach am besten funktioniert. Schneller, lokaler, ohne Cloud-Zwang.</div>
+        </details>
+
+        <details class="faq">
+          <summary><span>Was, wenn meine Skills den Vault nicht lesen können?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Die Skills aus JustClawd sind vorverbunden. Lesen, Schreiben, Anlegen, Verlinken funktioniert sofort. Eigene Skills kannst Du andocken. Anleitung liegt bei.</div>
+        </details>
+
+        <details class="faq">
+          <summary><span>Was ist mit Updates für die Vault-Struktur?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Wir entwickeln den Vault weiter. Neue Templates, neue Ordner-Strukturen, neue Workflows landen automatisch in Deinem Brain. Lebenslang.</div>
+        </details>
+      </div>
+  </section>
+
+  <!-- Final CTA + Decline -->
+  <section class="sect-wide bg-radial-soft has-fade-top" style="text-align: center; position: relative; overflow: hidden;">
+    <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.5;"></div>
+    <div style="position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; border-radius: 50%; pointer-events: none;
+                background: radial-gradient(circle, rgba(77,151,254,0.22) 0%, transparent 60%);"></div>
+
+    <div class="max-c" style="position: relative; max-width: 44rem;">
+      <h2 class="fade-up" style="font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 1.5rem;">
+        <span class="text-wg-grad">Du hast die Skills.</span><br />
+        <span class="text-cyan-royal-grad">Jetzt baust Du das Backend.</span>
+      </h2>
+      <p class="fade-up" style="color: var(--jc-blue-300); font-size: 0.9rem; margin-bottom: 2rem;">Pionier-Preis, gültig nur jetzt. 149&nbsp;€ einmalig.</p>
+
+      <div class="fade-up" style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+        <div class="huly-cta-wrap">
+          <span class="huly-cta-wrap__halo"></span>
+          <a href="mailto:hello@justclose.de?subject=Playbook%20Pionier-Zugang" class="huly-cta">
+            <span class="huly-cta__glow"></span>
+            Ja, Brain-Zugang sichern
+            <svg class="huly-cta__arrow" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="fade-up" style="margin-top: 1.25rem;">
+        <a href="/" class="decline-link">
+          Nein danke, mein Wissen bleibt da, wo es ist
+          <svg width="14" height="8" viewBox="0 0 17 9" fill="none"><path d="M16.354 4.854a.5.5 0 0 0 0-.708L13.172.964a.5.5 0 1 0-.708.708L15.293 4.5l-2.829 2.828a.5.5 0 1 0 .708.708l3.182-3.182ZM0 5h16V4H0v1Z" fill="currentColor"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  </main>
+
+  <script>
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-revealed'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.fade-up, .stagger, .section-bridge').forEach(el => io.observe(el));
+
+    // Slot bar fill animation
+    (function () {
+      const bar = document.getElementById('slot-bar');
+      if (!bar) return;
+      const taken = parseInt(document.getElementById('slot-taken').textContent, 10);
+      const total = parseInt(document.getElementById('slot-total').textContent, 10);
+      const pct = Math.min(100, (taken / total) * 100);
+      const slotIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            setTimeout(() => { bar.style.width = pct + '%'; }, 200);
+            slotIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      slotIO.observe(bar.parentElement.parentElement);
+    })();
+
+    // Huly CTA · Cursor-Glow Tracking
+    (() => {
+      const wraps = document.querySelectorAll('.huly-cta-wrap');
+      if (!wraps.length) return;
+      const REST_X = 115, INNER_HALF = 110, EASING = 0.12;
+      wraps.forEach((wrap) => {
+        const halo  = wrap.querySelector('.huly-cta-wrap__halo');
+        const btn   = wrap.querySelector('.huly-cta');
+        const inner = btn && btn.querySelector('.huly-cta__glow');
+        if (!halo || !btn || !inner) return;
+        let cIn = REST_X, tIn = REST_X, cHa = 0, tHa = 0, raf = null, hovering = false;
+        function loop() {
+          cIn += (tIn - cIn) * EASING;
+          cHa += (tHa - cHa) * EASING;
+          inner.style.transform = 'translate(' + cIn + 'px, -50%) translateZ(0)';
+          halo.style.transform  = 'translate(calc(-50% + ' + cHa + 'px), -50%) translateZ(0)';
+          if (!hovering && Math.abs(tIn - cIn) < 0.1 && Math.abs(tHa - cHa) < 0.1) { raf = null; return; }
+          raf = requestAnimationFrame(loop);
+        }
+        btn.addEventListener('mouseenter', () => { hovering = true; });
+        btn.addEventListener('mousemove', (e) => {
+          const r = btn.getBoundingClientRect();
+          const mx = e.clientX - r.left;
+          tIn = mx - INNER_HALF;
+          tHa = mx - r.width / 2;
+          if (!raf) raf = requestAnimationFrame(loop);
+        });
+        btn.addEventListener('mouseleave', () => {
+          hovering = false;
+          tIn = REST_X; tHa = 0;
+          if (!raf) raf = requestAnimationFrame(loop);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

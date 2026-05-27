@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JustClose · Das Vertriebssystem für IT &amp; Software</title>
-  <meta name="description" content="Das Vertriebssystem für B2B-Software. Outbound, CRM, Pipeline-Coaching und SOPs als Accelerator." />
+  <title>JustClawd · Skills für IT-Inhaber, die nicht verkaufen wollen</title>
+  <meta name="description" content="60+ fertige Skills für Marketing und Sales. 39 € statt 3.900 € Agentur. Einmal installieren, planbar Anfragen gewinnen. Für IT-Dienstleister und Software-Entwickler." />
   <meta name="theme-color" content="#0C2A4A" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,7 +13,7 @@
 
   <style>
     /* ==================================================================
-       JustClose · Magic-UI Design System
+       JustClawd · Magic-UI Design System
        ================================================================== */
     :root {
       color-scheme: dark;
@@ -105,6 +105,61 @@
     section.sect       { position: relative; padding: 5rem 1.5rem; }
     section.sect-tight { position: relative; padding: 3rem 1.5rem; }
     section.sect-wide  { position: relative; padding: 6rem 1.5rem; }
+
+    /* ============ Mobile breakpoint (≤ 640px) ============ */
+    @media (max-width: 640px) {
+      section.sect       { padding: 3.5rem 1.25rem; }
+      section.sect-tight { padding: 2rem 1.25rem; }
+      section.sect-wide  { padding: 4rem 1.25rem; }
+      .max-c { padding: 0; }
+      .sect-h { margin-bottom: 2rem; }
+      .sect-h h2 { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; line-height: 1.12 !important; }
+      .sect-h p  { font-size: 0.98rem; }
+      .hero__h1 { font-size: clamp(2rem, 9.5vw, 3rem) !important; line-height: 1.08 !important; }
+      .hero__sub { font-size: 0.98rem; }
+      .card-jc { padding: 1.75rem 1.4rem 1.5rem; border-radius: 18px; }
+      .card-jc h3 { font-size: 1.35rem !important; }
+      .compare-card { padding: 1.5rem 1.3rem; border-radius: 18px; }
+      .feature-card { padding: 1.35rem 1.3rem; }
+      details.faq { padding: 1.05rem 1.2rem; border-radius: 14px; }
+      details.faq summary { font-size: 0.96rem; gap: 0.6rem; }
+      details.faq summary .faq-icon { width: 28px; height: 28px; }
+      details.faq .faq-body { font-size: 0.9rem; }
+      .stat-bar { gap: 1.25rem 1rem; }
+      .stat-num { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
+      .stat-lbl { font-size: 0.62rem; }
+      .tab-btn { font-size: 0.78rem; padding: 0.45rem 0.85rem; }
+      .tab-count { font-size: 0.65rem; padding: 1px 6px; }
+      .countdown { gap: 0.6rem; }
+      .countdown__num { font-size: 1.4rem; }
+      .countdown__lbl { font-size: 0.55rem; }
+      .countdown__sep { font-size: 0.9rem; }
+      .price-card { padding: 1.75rem 1.4rem; }
+      .price-card .price { font-size: 2.4rem; }
+      .urgency { padding: 1.75rem 1.4rem; }
+      .urgency__price { font-size: 2.4rem; }
+      .console-wrap { padding: 0; }
+      .console__body { padding: 1rem 1.1rem 1.25rem; font-size: 0.74rem; }
+      .console__lbl { width: 12ch; }
+      .customer-logo { min-width: 80px; height: 36px; }
+      .customer-logo img { max-height: 36px; max-width: 130px; }
+      .marquee-track__row { gap: 2.5rem; padding-right: 2.5rem; }
+      .huly-cta { height: 44px; padding: 0 22px; font-size: 11.5px; }
+      .nav-cta { height: 34px; padding: 0 14px; font-size: 10.5px; }
+      .qual-card { padding: 1.4rem 1.3rem; }
+      .why-item { padding: 1rem 1.1rem; gap: 0.85rem; }
+      .why-item h3 { font-size: 1rem; }
+      .why-item p { font-size: 0.88rem; }
+      .deliv-item { padding: 0.75rem 1rem; font-size: 0.86rem; }
+      .img-placeholder { border-radius: 14px; font-size: 0.78rem; }
+    }
+    @media (max-width: 400px) {
+      .hero__h1 { font-size: clamp(1.75rem, 10vw, 2.5rem) !important; }
+      .sect-h h2 { font-size: clamp(1.5rem, 8.5vw, 2.25rem) !important; }
+      .stat-bar { gap: 1rem 0.75rem; }
+      .countdown { gap: 0.4rem; }
+      .countdown__num { font-size: 1.2rem; }
+    }
     .sect-h { text-align: center; max-width: 44rem; margin: 0 auto 3rem; }
     .sect-h.wide { max-width: 56rem; }
     .sect-h h2 { font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-top: 1.25rem; }
@@ -213,7 +268,7 @@
     @media (min-width: 880px) { .menu-btn { display: none; } }
 
     /* ==================================================================
-       Pills (Shimmer in JustClose-Blau)
+       Pills (Shimmer in JustClawd-Blau)
        ================================================================== */
     .pill {
       display: inline-flex; align-items: center; gap: 0.4rem;
@@ -386,7 +441,39 @@
     /* ==================================================================
        Animated Console (typing + window grows)
        ================================================================== */
-    .console-wrap { position: relative; max-width: 740px; margin: 3rem auto 0; padding: 0 1rem; }
+        /* ================================================================
+       Hero Persons (Andi + Freddy seitlich, statisch im Hintergrund)
+       ================================================================ */
+    .hero-person {
+      position: absolute;
+      bottom: 0;
+      width: 28%;
+      max-width: 480px;
+      aspect-ratio: 1 / 1.15;
+      height: auto;
+      object-fit: cover;
+      object-position: center 28%;
+      z-index: 1;
+      mix-blend-mode: lighten;
+      filter: brightness(0.82) contrast(1);
+      opacity: 1;
+      pointer-events: none;
+      -webkit-mask-image:
+        linear-gradient(to bottom, #000 0%, #000 48%, transparent 92%),
+        radial-gradient(ellipse 70% 100% at 50% 35%, #000 55%, transparent 95%);
+      mask-image:
+        linear-gradient(to bottom, #000 0%, #000 48%, transparent 92%),
+        radial-gradient(ellipse 70% 100% at 50% 35%, #000 55%, transparent 95%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+    .hero-person.left  { left: -2%;  bottom: 6rem; transform: scale(0.92); transform-origin: bottom left; }
+    .hero-person.right { right: -2%; bottom: 2rem; transform: scale(1.10); transform-origin: bottom right; }
+    @media (max-width: 1100px) { .hero-person { width: 26%; } }
+    @media (max-width: 900px)  { .hero-person { display: none; } }
+
+    .console-wrap { position: relative; max-width: 1080px; margin: 3rem auto 0; padding: 0 1rem; isolation: isolate; }
+    .console { position: relative; z-index: 1; }
     .console {
       position: relative; border-radius: 14px;
       background: linear-gradient(180deg, rgba(20,47,105,0.45), rgba(5,9,19,0.85));
@@ -694,19 +781,72 @@
        FAQ
        ================================================================== */
     .faq-list { max-width: 44rem; margin: 0 auto; }
-    details.faq { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.15rem 0; }
+    /* Premium FAQ — Card-Look mit Hover-Glow */
+    .faq-list { display: grid; gap: 0.85rem; }
+    details.faq {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 1.3rem 1.6rem;
+      transition: border-color .3s ease, background .3s ease, box-shadow .3s ease, transform .3s ease;
+    }
+    details.faq::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(77,151,254,0.40), transparent);
+      opacity: 0;
+      transition: opacity .35s ease;
+      border-radius: 16px 16px 0 0;
+    }
+    details.faq:hover {
+      border-color: rgba(77,151,254,0.32);
+      background: linear-gradient(180deg, rgba(77,151,254,0.05), rgba(255,255,255,0.005));
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px -16px rgba(77,151,254,0.30);
+    }
+    details.faq:hover::before { opacity: 1; }
+    details.faq[open] {
+      border-color: rgba(77,151,254,0.45);
+      background:
+        linear-gradient(180deg, rgba(77,151,254,0.08), rgba(255,255,255,0.005) 40%),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 16px 40px -16px rgba(77,151,254,0.40);
+    }
+    details.faq[open]::before { opacity: 1; }
     details.faq summary {
-      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; font-weight: 500; color: #fff;
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-weight: 600; font-size: 1.04rem; color: #fff;
       transition: color .25s ease;
     }
     details.faq summary::-webkit-details-marker { display: none; }
-    details.faq summary svg { transition: transform .35s cubic-bezier(.4,0,.2,1); flex-shrink: 0; color: var(--jc-blue-300); }
-    details.faq:hover summary { color: var(--jc-blue-100); }
-    details.faq[open] summary svg { transform: rotate(180deg); }
+    details.faq summary > span:first-child { letter-spacing: -0.01em; }
+    details.faq summary .faq-icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 999px;
+      background: rgba(77,151,254,0.10);
+      border: 1px solid rgba(77,151,254,0.28);
+      color: var(--jc-blue-300);
+      transition: transform .4s cubic-bezier(.4,0,.2,1), background .25s ease, border-color .25s ease;
+    }
+    details.faq summary .faq-icon svg { width: 14px; height: 14px; }
+    details.faq[open] summary .faq-icon {
+      transform: rotate(180deg);
+      background: rgba(77,151,254,0.20);
+      border-color: rgba(77,151,254,0.50);
+    }
     details.faq[open] summary { color: var(--jc-blue-100); }
-    details.faq .faq-body { color: rgba(255,255,255,0.7); padding-top: 0.85rem; line-height: 1.65; font-size: 0.92rem;
-      animation: fade-up .4s cubic-bezier(.4,0,.2,1) both; }
+    details.faq:hover summary { color: var(--jc-blue-100); }
+    details.faq .faq-body {
+      color: rgba(255,255,255,0.72);
+      padding-top: 1rem;
+      margin-top: 0.85rem;
+      border-top: 1px solid rgba(77,151,254,0.10);
+      line-height: 1.7; font-size: 0.96rem;
+      animation: fade-up .4s cubic-bezier(.4,0,.2,1) both;
+    }
 
     /* ==================================================================
        Footer
@@ -736,16 +876,16 @@
   <!-- ================== Header ================== -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="#" class="site-header__logo" aria-label="JustClose Startseite">
-        <img src="logo.png" alt="JustClose"
+      <a href="#" class="site-header__logo" aria-label="JustClawd Startseite">
+        <img src="logo.png" alt="JustClawd"
              class="site-header__logo-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block'; this.nextElementSibling.nextElementSibling.style.display='inline';" />
         <span class="site-header__logo-dot" style="display:none;"></span>
-        <span style="display:none;">JustClose</span>
+        <span style="display:none;">JustClawd</span>
       </a>
       <nav class="site-nav">
-        <a href="#features">Features</a>
-        <a href="#whats-inside">Inhalte</a>
+        <a href="#features">Skills</a>
+        <a href="#whats-inside">Was drin ist</a>
         <a href="#pricing">Preise</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -764,19 +904,27 @@
   <!-- ================== Hero ================== -->
   <section class="hero bg-radial-jc has-fade-bottom" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
     <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none;"></div>
-    <div style="position: relative; max-width: 1200px; width: 100%;">
+    <img class="hero-person left"
+         src="https://lh3.googleusercontent.com/d/1uOF5E9aw4PX3LH0MmFKXvueu-9VEFPK2=w800"
+         alt="" aria-hidden="true"
+         onerror="this.style.display='none';" />
+    <img class="hero-person right"
+         src="https://lh3.googleusercontent.com/d/1YxPpYprHxuEKqabb9NxftljXpPM0dBz0=w800"
+         alt="" aria-hidden="true"
+         onerror="this.style.display='none';" />
+    <div style="position: relative; max-width: 1200px; width: 100%; z-index: 2;">
 
-      <span class="pill fade-in" style="margin-bottom: 1.5rem;">Sales Betriebssystem</span>
+      <span class="pill fade-in" style="margin-bottom: 1.5rem;">Für IT-Inhaber, die nicht verkaufen wollen</span>
 
       <h1 class="hero__h1 fade-in" style="animation-delay: .1s;">
-        <span class="text-wg-grad">Dein Vertriebssystem</span><br />
-        <span class="text-cyan-royal-grad">für IT &amp; Software</span>
+        <span class="text-wg-grad">39 € einmalig statt</span><br />
+        <span class="text-cyan-royal-grad">3.900 € im Monat.</span>
       </h1>
 
       <p class="hero__sub fade-in" style="animation-delay: .2s;">
-        Ein Vertrieb, der nichts vergisst. <strong>500+ SOPs in 32 Bereichen.</strong>
-        9 Rollen. Vom Outbound bis zum Renewal.
-        <strong>Einmal aufsetzen, planbar verkaufen.</strong>
+        60+ fertige Skills für <strong>Sales und Marketing.</strong> LinkedIn, Cold Outreach, Cold Calling, Content, Lead-Recherche, Discovery, Closing.
+        Einmal installiert. <strong>Anfragen kommen ohne Dich, ohne Agentur, ohne neuen Vertriebler.</strong>
+        Für IT-Dienstleister und Software-Entwickler. Auf Deutsch.
       </p>
 
       <div class="hero__cta-row fade-in" style="animation-delay: .3s;">
@@ -791,7 +939,7 @@
         </div>
       </div>
 
-      <p class="hero__caption fade-in" style="animation-delay: .4s;">Setup in unter 60 Sekunden.</p>
+      <p class="hero__caption fade-in" style="animation-delay: .4s;">Lifetime-Zugang. Setup in unter 60 Sekunden.</p>
 
       <div class="console-wrap fade-in" style="animation-delay: .5s;">
         <div class="console has-beam">
@@ -847,8 +995,8 @@
     <div class="max-c" style="position: relative;">
       <div class="sect-h fade-up">
         <span class="pill">Kommt Dir das bekannt vor?</span>
-        <h2><span class="text-wg-grad">Dein Sales Setup</span> <span class="text-cyan-deep-grad">bremst Dich aus</span></h2>
-        <p>Die meisten Software-Unternehmen verkaufen ohne System. Es funktioniert, bis etwas Wichtiges schiefgeht.</p>
+        <h2><span class="text-wg-grad">Du baust IT für andere.</span><br /><span class="text-cyan-deep-grad">Aber niemand findet Dich.</span></h2>
+        <p>Die meisten IT-Inhaber verkaufen über Empfehlung. Funktioniert. Bis der eine Großkunde geht.</p>
       </div>
 
       <div class="grid-stack stagger card-spine">
@@ -860,9 +1008,9 @@
             </div>
             <div class="card-jc__divider"></div>
           </div>
-          <h3>Dein Sales hat kein Gedächtnis.</h3>
-          <p class="sub">Jeder Deal startet bei null.</p>
-          <p class="body">Du erklärst Use Cases, Pain Points und Zuständigkeiten. Immer wieder. Der neue Sales fängt mit Notion-Suche an, statt zu verkaufen. Was im letzten Discovery besprochen wurde, ist drei Stages später vergessen. Kein Kontext, kein Lernen, nur Wiederholung.</p>
+          <h3>Du wartest auf die nächste Empfehlung.</h3>
+          <p class="sub">Und das ist Dein einziger Kanal.</p>
+          <p class="body">Empfehlung kam letzten Monat. Vielleicht kommt sie diesen Monat. Vielleicht erst nächstes Quartal. Du hast keinen Hebel. Jeder verlorene Großkunde wird zur existenziellen Frage. Jedes ruhige Quartal zum Wartespiel.</p>
         </article>
 
         <article class="card-jc card-mid">
@@ -872,9 +1020,9 @@
             </div>
             <div class="card-jc__divider"></div>
           </div>
-          <h3>Dein Stack ist ein Kartenhaus.</h3>
-          <p class="sub">Ein falscher Stage-Wechsel und alles kippt.</p>
-          <p class="body">Tabs in Sheets, Sequenzen in Lemlist, Notes in Notion, Pipeline in HubSpot. Niemand weiß, welche Quelle die Wahrheit ist. Du arbeitest ohne Sicherheitsnetz und hoffst, dass es bis zum Quartalsende hält.</p>
+          <h3>Du hast eine Agentur bezahlt. Nichts kam zurück.</h3>
+          <p class="sub">Generische Posts, generische Ergebnisse.</p>
+          <p class="body">Du hast 3.000 € pro Monat überwiesen. Bekommen hast Du LinkedIn-Posts, die wie für jeden anderen klingen. Keine Anfragen. Keine echten Calls. Nur Reichweite, von der niemand kauft. Nach 6 Monaten hast Du gekündigt. Und stehst wieder am Anfang.</p>
         </article>
 
         <article class="card-jc card-deep">
@@ -884,15 +1032,15 @@
             </div>
             <div class="card-jc__divider"></div>
           </div>
-          <h3>Frameworks sind für alle. Also für niemanden.</h3>
-          <p class="sub">Generisch rein, generisch raus.</p>
-          <p class="body">MEDDIC, SPIN, Challenger. Methoden, die zu jeder Branche passen und in keiner wirklich funktionieren. Sie kennen weder Dein Produkt noch Deine Zielkunden. Du baust auf einem Fundament, das nie für Dich gemacht war.</p>
+          <h3>LinkedIn-Coaches sind keine Lösung.</h3>
+          <p class="sub">2.500 € für ein Wochenende. Danach machst Du es selbst.</p>
+          <p class="body">Der Coach hat Dir gezeigt, wie man postet. Danach gehst Du wieder ins Tagesgeschäft. Drei Posts in einem Quartal. Niemand schreibt Dich an. Du hast nicht das Wissensproblem. Du hast das Umsetzungsproblem. Und Coaches lösen das nie.</p>
         </article>
 
       </div>
 
       <div class="text-center mt-12 fade-up">
-        <p style="color: rgba(255,255,255,0.55); margin-bottom: 1.25rem;">Es gibt einen besseren Weg.</p>
+        <p style="color: rgba(255,255,255,0.55); margin-bottom: 1.25rem;">Es gibt einen anderen Weg.</p>
         <div class="huly-cta-wrap">
           <span class="huly-cta-wrap__halo"></span>
           <a href="#features" class="huly-cta">
@@ -910,10 +1058,10 @@
   <!-- ================== Stat Bar ================== -->
   <section class="sect-tight" style="border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
     <div class="max-c stat-bar fade-up">
-      <div><div class="stat-num" data-counter="500" data-suffix="+">0</div><div class="stat-lbl">SOPs</div></div>
-      <div><div class="stat-num" data-counter="32">0</div><div class="stat-lbl">Bereiche</div></div>
+      <div><div class="stat-num" data-counter="60" data-suffix="+">0</div><div class="stat-lbl">Skills</div></div>
+      <div><div class="stat-num" data-counter="12">0</div><div class="stat-lbl">Bereiche</div></div>
       <div><div class="stat-num" data-counter="21">0</div><div class="stat-lbl">Befehle</div></div>
-      <div><div class="stat-num" data-counter="9">0</div><div class="stat-lbl">Rollen</div></div>
+      <div><div class="stat-num" data-counter="200" data-suffix="+">0</div><div class="stat-lbl">Templates</div></div>
       <div><div class="stat-num" data-counter="8">0</div><div class="stat-lbl">Prüfungen</div></div>
       <div><div class="stat-num" data-counter="6">0</div><div class="stat-lbl">Memory-Ebenen</div></div>
     </div>
@@ -923,46 +1071,46 @@
   <section id="features" class="sect bg-radial-soft has-fade-both">
     <div class="max-c">
       <div class="sect-h fade-up">
-        <span class="pill">Was wir bauen</span>
-        <h2><span class="text-wg-grad">Alles, was Dein Vertrieb</span> <span class="text-cyan-royal-grad">haben sollte</span></h2>
-        <p>Produktionsreife Infrastruktur aus echtem Tagesgeschäft. Keine Theorie. Funktionierende Systeme.</p>
+        <span class="pill">Was Du bekommst</span>
+        <h2><span class="text-wg-grad">Alles, was Deine Agentur verspricht.</span><br /><span class="text-cyan-royal-grad">Bei Dir als Skill fertig installiert.</span></h2>
+        <p>Sechs Jahre IT-Vertriebs-Beratung. Jeder Workflow für Sales und Marketing, der bei uns intern funktioniert, liegt bei Dir als Skill bereit. Keine Theorie, kein Beratungs-PDF.</p>
       </div>
 
       <div class="grid-3 stagger">
         <div class="feature-card">
           <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg></div>
-          <h3>Langzeit Sales Memory</h3>
-          <p>Account-Historie, Discovery-Ergebnisse und Stakeholder-Maps zentral abgelegt. Auch der neue Sales weiß sofort, was der Kunde letztes Quartal gesagt hat.</p>
+          <h3>LinkedIn-Profil, das überzeugt</h3>
+          <p>Headline, About, Featured. Komplett in IT-Inhaber-Voice. Dein Profil wirkt geplant und glaubwürdig, nicht zusammengeschustert.</p>
         </div>
 
         <div class="feature-card">
           <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Automatische Pipeline-Prüfungen</h3>
-          <p>Hintergrund-Regeln erkennen kippende Deals, fehlende Stakeholder und unvollständige Pflege. Probleme sichtbar, bevor sie das Quartal kosten.</p>
+          <h3>Cold-Email-Sequenzen, die nicht im Spam landen</h3>
+          <p>4-Touch-Sequenzen, die wir selbst nutzen. Hooks, Personalisierungs-Templates, Follow-up-Logik. DSGVO-konform.</p>
         </div>
 
         <div class="feature-card">
           <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
-          <h3>Spezialisierte Rollen</h3>
-          <p>BDR, AE, CSM, Sales Ops. Jede Rolle mit eigenen SOPs, KPIs und Workflows. Onboarding eines Neuen in 14 Tagen statt drei Monaten.</p>
+          <h3>Content-Kalender ohne Schreibblockade</h3>
+          <p>30 Post-Ideen pro Monat, automatisch aus Deinen Projekten generiert. Dein Wissen wird zu LinkedIn-Beiträgen, ohne dass Du eine Stunde am Texten sitzt.</p>
         </div>
 
         <div class="feature-card">
           <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
-          <h3>Domain SOPs</h3>
-          <p>Discovery, Demo, Closing, Handover, QBR, Renewal, Expansion. Jeder Schritt mit Input, Prozess, Output und Definition of Done.</p>
+          <h3>Lead-Recherche per Klick</h3>
+          <p>Apollo, LinkedIn Sales Navigator und Crunchbase angebunden. Aus Deiner ICP-Definition werden in Minuten 200 echte Kontakte.</p>
         </div>
 
         <div class="feature-card">
           <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
-          <h3>Befehls-Framework</h3>
-          <p>Slash-Befehle für wiederkehrende Sales-Workflows: /discovery, /demo-prep, /deal-review, /forecast. Standard im ganzen Team.</p>
+          <h3>Discovery-Calls vorbereitet</h3>
+          <p>Der Skill recherchiert Firma, Stakeholder und Pain Points vor dem Call. Du gehst informiert rein, nicht improvisiert.</p>
         </div>
 
         <div class="feature-card">
           <div class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-          <h3>Ein-Klick-Setup</h3>
-          <p>Wir installieren das System in Deinen Stack. Close, HubSpot, n8n, Power Automate. Tag 1 produktiv. Kein Beratungs-Gerüst zum Selbstbauen.</p>
+          <h3>Ein-Klick-Setup in Deinem Stack</h3>
+          <p>Funktioniert mit Close, HubSpot, n8n und Make. Tag 1 produktiv. Kein Beratungs-Gerüst zum Selbstbauen.</p>
         </div>
       </div>
 
@@ -986,8 +1134,8 @@
     <div class="max-c">
       <div class="sect-h fade-up">
         <span class="pill">Der Unterschied</span>
-        <h2><span class="text-wg-grad">Nicht noch ein</span><br /><span class="text-cyan-royal-grad">Berater-PDF</span></h2>
-        <p>Klassische Sales-Beratung kippt Dir Folien in den Schoß. JustClose installiert das System, das tatsächlich verkauft.</p>
+        <h2><span class="text-wg-grad">39 € oder 3.900 €.</span><br /><span class="text-cyan-royal-grad">Du entscheidest.</span></h2>
+        <p>Was die Agentur Dir in 6 Monaten liefert, hast Du mit JustClawd an Tag 1. Ohne Briefing, ohne Wartezeit, ohne Hoffnung.</p>
       </div>
 
       <div class="grid-2 stagger" style="max-width: 880px; margin: 0 auto;">
@@ -996,31 +1144,31 @@
             <div class="icon-tile compare-bad-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
             </div>
-            <h3>Klassische Sales-Beratung</h3>
+            <h3>Marketing-Agentur, 3.900 € pro Monat</h3>
           </div>
           <ul style="list-style: none; padding: 0; margin: 0;">
-            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Drei Workshop-Tage, dann Folien-Deck per Mail</li>
-            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Generische Frameworks für alle Branchen</li>
-            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Sofort tot. Keine Intelligenz, keine Kontrolle</li>
-            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du baust jede Vorlage selbst manuell</li>
-            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Sofortige technische Schulden. Tools, die Du nie nutzt</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>2-Wochen-Onboarding, danach 3 Posts pro Woche von einem Junior</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Generische LinkedIn-Posts, die wie für jeden anderen klingen</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Keine echte IT-Branchenkenntnis, kein Verständnis Deiner Sprache</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Cold-Outreach. „Machen wir. Kostet aber extra."</li>
+            <li class="compare-row bad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Du erklärst Deinem Account Manager monatlich, was Du eigentlich verkaufst</li>
           </ul>
         </div>
 
         <div class="compare-card is-good">
-          <span class="compare-card__badge">JustClose</span>
+          <span class="compare-card__badge">JustClawd</span>
           <div class="compare-card__head">
             <div class="icon-tile">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
             </div>
-            <h3>Selbstlernende Architektur</h3>
+            <h3>JustClawd, 39 € einmalig</h3>
           </div>
           <ul style="list-style: none; padding: 0; margin: 0;">
-            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Komplettes System: Memory, Rollen, SOPs, Befehle, Prüfungen</li>
-            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Installiert sich neben dem, was Du schon hast. Keine Konflikte</li>
-            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Automatische Prüfungen fangen Fehler ab, bevor sie das Quartal treffen</li>
-            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Selbstlernend. Wir trainieren das System auf Deinen Stack</li>
-            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>500+ SOPs in 32 Bereichen. Nutze, was Du brauchst</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>60+ Skills sofort einsatzbereit. LinkedIn, Cold-Email, Content, Discovery.</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>IT-spezifisch. Sprache, Pain Points und Buying-Center für Software-Dienstleister.</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Du steuerst alles selbst. Keine wöchentlichen Status-Calls, keine Wartezeit.</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Einmal kaufen, lebenslang nutzen. Keine Monatsabrechnung.</li>
+            <li class="compare-row good"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Wenn etwas nicht passt, passt Du den Skill an. Du behältst die Kontrolle.</li>
           </ul>
         </div>
       </div>
@@ -1045,9 +1193,9 @@
     <div class="bg-grid" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.4;"></div>
     <div class="max-c" style="position: relative;">
       <div class="sect-h wide fade-up">
-        <span class="pill cyan">Dein Team. Erweitert.</span>
-        <h2><span class="text-wg-grad">Was, wenn jeder Sales</span><br /><span class="text-cyan-deep-grad">einen Profi-Workflow hätte?</span></h2>
-        <p>Deine besten Leute wissen, wie B2B-Software verkauft wird. Ab jetzt weiß es das ganze Team.</p>
+        <span class="pill cyan">Dein zweites Paar Hände</span>
+        <h2><span class="text-wg-grad">Was, wenn Sales und Marketing einfach laufen,</span><br /><span class="text-cyan-deep-grad">während Du codest?</span></h2>
+        <p>Du codest weiter. Die Skills posten auf LinkedIn, schreiben Cold-Outreach, rufen kalt an, recherchieren Leads, qualifizieren Anfragen. Du gehst nur in die Calls, die sich lohnen.</p>
       </div>
 
       <div class="grid-stack stagger card-spine">
@@ -1058,9 +1206,9 @@
             </div>
             <div class="card-jc__divider"></div>
           </div>
-          <h3>Outbound, Closing, CRM. Sofort produktiv.</h3>
-          <p class="sub">12 Bereiche. Vom ersten Touch bis zum Renewal.</p>
-          <p class="body">Statt Wochen mit Onboarding zu verbrennen, startet jeder neue Sales mit einem fertigen Playbook. Discovery-Frameworks, Demo-Scripts, Closing-Drills. Alles dokumentiert, alles getestet auf B2B-Software.</p>
+          <h3>LinkedIn-Präsenz, die nicht nervt</h3>
+          <p class="sub">3 Posts pro Woche. In Deiner Stimme. Aus Deinen Projekten.</p>
+          <p class="body">Du lieferst dem Skill ein Stichwort aus Deinem Projekt-Tagebuch. Er macht daraus einen LinkedIn-Post in Deiner Sprache, mit Deinem Erfahrungsschatz. Du hast die finale Freigabe. Er macht 95 % der Arbeit.</p>
         </article>
 
         <article class="card-jc card-mid">
@@ -1070,9 +1218,9 @@
             </div>
             <div class="card-jc__divider"></div>
           </div>
-          <h3>Kein generischer Output mehr.</h3>
-          <p class="sub">Deine Standards. Dein Kontext. Jede Session.</p>
-          <p class="body">Unsere SOPs sind nicht aus Sales-Büchern. Sie kommen aus echten Deals. IT-Dienstleister, SaaS-Anbieter, Software-Häuser. Du bekommst, was nachweislich funktioniert in Deiner Branche, nicht in der Pharma- oder Auto-Industrie.</p>
+          <h3>Cold-Outreach, der Anfragen bringt</h3>
+          <p class="sub">Sequenzen, die kein Tool-Setup brauchen.</p>
+          <p class="body">Du startest mit Deinem ICP. Der Skill baut Listen, schreibt personalisierte Erst-Mails, kümmert sich um Follow-ups. Du bekommst nur die Antworten, die einen Call wert sind.</p>
         </article>
 
         <article class="card-jc card-deep">
@@ -1082,9 +1230,9 @@
             </div>
             <div class="card-jc__divider"></div>
           </div>
-          <h3>Verfügbar, wenn Du es brauchst.</h3>
-          <p class="sub">Kein Stundensatz. Kein Wartezimmer. Kein Briefing.</p>
-          <p class="body">Pipeline-Review zwischen zwei Meetings. Account-Strategie vor dem Closing-Call. Cold-Sequence neu schreiben am Sonntagabend. Das System mit eingebautem Wissen arbeitet im Hintergrund und liefert, als säße ein Senior Sales mit am Tisch.</p>
+          <h3>Discovery in 20 Minuten statt 2 Stunden</h3>
+          <p class="sub">Bevor Du in den Call gehst, weißt Du, wer Dir gegenüber sitzt.</p>
+          <p class="body">Der Skill recherchiert Firma, Geschäftsführung, Wettbewerb, Pain Points und die letzten LinkedIn-Aktivitäten. Du gehst nicht mehr improvisiert in den Termin. Du gehst informiert rein.</p>
         </article>
       </div>
 
@@ -1108,60 +1256,40 @@
     <div class="max-c">
       <div class="sect-h fade-up">
         <span class="pill">Was steckt drin</span>
-        <h2><span class="text-wg-grad">500+ SOPs</span><br /><span class="text-cyan-royal-grad">in 32 Bereichen</span></h2>
-        <p>Domain-Expertise für jeden Bereich Deines Vertriebs. Jede SOP ist ein strukturierter Workflow, kein Prompt-Dump. Plus Befehle, Rollen, Prüfungen und Memory.</p>
+        <h2><span class="text-wg-grad">60+ Skills für Sales und Marketing</span><br /><span class="text-cyan-royal-grad">in 12 Bereichen</span></h2>
+        <p>Jeder Skill ist ein fertiger Workflow. Input, Schritte, Output. Du startest ihn, er erledigt den Rest. Plus Befehle, Templates, Prüfungen und Memory.</p>
       </div>
 
       <div class="tab-row fade-up">
-        <button class="tab-btn is-active" data-tab="sops"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>SOPs <span class="tab-count">218</span></button>
+        <button class="tab-btn is-active" data-tab="sops"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Skills <span class="tab-count">60+</span></button>
         <button class="tab-btn" data-tab="commands"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Befehle <span class="tab-count">21</span></button>
-        <button class="tab-btn" data-tab="roles"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>Rollen <span class="tab-count">9</span></button>
+        <button class="tab-btn" data-tab="roles"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>Templates <span class="tab-count">200+</span></button>
         <button class="tab-btn" data-tab="checks"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Prüfungen <span class="tab-count">8</span></button>
         <button class="tab-btn" data-tab="memory"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/></svg>Memory <span class="tab-count">6</span></button>
       </div>
 
       <div class="search-wrap fade-up">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cat-search" type="search" placeholder="SOPs oder Bereiche suchen…" />
+        <input id="cat-search" type="search" placeholder="Skills oder Bereiche suchen…" />
       </div>
 
       <div id="cat-grid" class="cat-grid stagger">
-        <div class="cat-card"><div class="cat-card__head"><h4>Outbound &amp; Prospecting</h4><span class="cat-count">28</span></div><p>ICP-Schärfung, Listenbau, Sequenzen, Reply-Optimierung, Cold-Calling.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Cold Email Sequences</h4><span class="cat-count">18</span></div><p>Hooks, Personalisierung, Follow-up-Logik, A/B-Testing, Spam-Vermeidung.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>LinkedIn &amp; Social Selling</h4><span class="cat-count">14</span></div><p>Profil-Optimierung, Connection-Strategien, DM-Templates, Content-Plan.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Cold Calling &amp; Voice</h4><span class="cat-count">11</span></div><p>Opener, Einwandbehandlung, Voicemails, Discovery am Telefon.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>ICP &amp; Segmentation</h4><span class="cat-count">12</span></div><p>Buyer-Persona, Account-Tiering, Vertical-Cuts, Total Addressable Market.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Inbound &amp; Lead-Routing</h4><span class="cat-count">16</span></div><p>Inbound-Triage, Routing-Regeln, Speed-to-Lead, Re-Engagement.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Lead-Scoring &amp; MQL</h4><span class="cat-count">8</span></div><p>Scoring-Modelle, MQL-Definition, SQL-Übergabe, Disqualifikation.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Discovery &amp; Demos</h4><span class="cat-count">22</span></div><p>Discovery-Frameworks, Demo-Scripts, Pain-Mapping, Stakeholder-Maps.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Qualification &amp; MEDDIC</h4><span class="cat-count">14</span></div><p>MEDDIC, BANT, GPCT, Champion-Identifikation, Power-Sponsor.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Demo-Engineering</h4><span class="cat-count">9</span></div><p>Demo-Setup, Sandbox-Hygiene, Demo-Storyline, Q&amp;A-Kataloge.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Closing &amp; Verhandlung</h4><span class="cat-count">19</span></div><p>Closing-Drills, Einwandbehandlung, Preisverteidigung, Verträge.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Negotiation Tactics</h4><span class="cat-count">12</span></div><p>Anchoring, Concessions, Mutual-Action-Plans, Multi-Threading.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Pricing &amp; Packaging</h4><span class="cat-count">12</span></div><p>Tier-Design, Add-ons, Volume-Discounts, ROI-Cases.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Battle Cards &amp; Competitor</h4><span class="cat-count">10</span></div><p>Wettbewerbsanalyse, Battle Cards, Win/Loss-Analyse.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Account Planning &amp; ABM</h4><span class="cat-count">14</span></div><p>Target-Account-Lists, Multi-Threading, Strategic-Plays, Champion-Maps.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>CRM &amp; Pipeline</h4><span class="cat-count">24</span></div><p>Close- und HubSpot-Setup, Stages, Auto-Tasks, Reporting-Dashboards.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Forecasting &amp; Reporting</h4><span class="cat-count">14</span></div><p>Wöchentliche Reviews, Deal-Health, Win-Rate-Modelle, Quartalsplan.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Sales Operations</h4><span class="cat-count">18</span></div><p>Quotenplanung, Territory-Cuts, Comp-Pläne, Tooling-Stack.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>RevOps &amp; Attribution</h4><span class="cat-count">10</span></div><p>Lifecycle-Reporting, Attribution-Modelle, Funnel-Diagnostik.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>AI &amp; Automation</h4><span class="cat-count">28</span></div><p>n8n, Power Automate, Claude-Workflows für Sales-Teams.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Tools &amp; Tech-Stack</h4><span class="cat-count">8</span></div><p>Auswahl, Integration und Setup für Deinen Sales-Stack.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Customer Success</h4><span class="cat-count">12</span></div><p>Onboarding, QBR, Expansion-Playbooks, Health-Score-Modelle.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Onboarding &amp; Activation</h4><span class="cat-count">15</span></div><p>First-Value-Pfade, Activation-Triggers, Time-to-Value.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Retention &amp; Churn</h4><span class="cat-count">13</span></div><p>Risk-Indikatoren, Save-Plays, Cancellation-Calls, Win-Backs.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Expansion &amp; Upsell</h4><span class="cat-count">16</span></div><p>Upsell-Triggers, Multi-Product-Plays, Renewal-Cycles.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Hiring &amp; Onboarding</h4><span class="cat-count">11</span></div><p>Interview-Guides, Ramp-Up-Pläne, Scorecards für Sales-Rollen.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Coaching &amp; Calls</h4><span class="cat-count">16</span></div><p>Call-Review-Methoden, 1:1-Templates, Performance-Reviews.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Performance &amp; 1:1s</h4><span class="cat-count">13</span></div><p>Skill-Frameworks, Quotaerreichung, Career-Paths.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Sales Enablement</h4><span class="cat-count">15</span></div><p>Onboarding-Curriculum, Content-Library, Skill-Checkpoints.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Marketing-Sync</h4><span class="cat-count">9</span></div><p>SLA Marketing/Sales, Content-Briefings, Lead-Scoring, Attribution.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Compliance &amp; DSGVO</h4><span class="cat-count">7</span></div><p>Outbound-DSGVO, Datenverarbeitung, Vertragsbausteine.</p></div>
-        <div class="cat-card"><div class="cat-card__head"><h4>Contract &amp; Procurement</h4><span class="cat-count">8</span></div><p>Vertragsverhandlung, Procurement-Calls, RFP-Antworten.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>LinkedIn &amp; Social Selling</h4><span class="cat-count">14</span></div><p>Profil-Aufbau, Post-Writer, DM-Templates, Content-Strategie.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Cold Outreach</h4><span class="cat-count">12</span></div><p>Sequenzen, Hooks, Personalisierung, Follow-up-Logik.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Content &amp; Storytelling</h4><span class="cat-count">10</span></div><p>Case-Studies, Thought-Leadership, KI-Story für IT-Inhaber.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>ICP &amp; Lead-Recherche</h4><span class="cat-count">8</span></div><p>ICP-Definition, Apollo-Recherche, Account-Tiering.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Discovery &amp; Calls</h4><span class="cat-count">7</span></div><p>Pre-Call-Briefing, Discovery-Fragen, Objection-Handler.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Cold Calling</h4><span class="cat-count">5</span></div><p>Opener, Voicemails, Einwandbehandlung am Telefon.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Closing &amp; Verhandlung</h4><span class="cat-count">6</span></div><p>Pricing-Verteidigung, Mutual Action Plans, Vertragsbausteine.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Website &amp; Landing</h4><span class="cat-count">5</span></div><p>Hero-Texte, Pricing-Tabellen, FAQ-Builder, Lead-Magnete.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Ads &amp; Performance</h4><span class="cat-count">4</span></div><p>Meta-Ads, LinkedIn-Ads, Headlines, Hook-Generator.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Automation &amp; Workflows</h4><span class="cat-count">8</span></div><p>n8n-Templates, Make-Szenarien, Claude-Workflows.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Reporting</h4><span class="cat-count">3</span></div><p>Pipeline-Report, Wochenzahlen, ICP-Health.</p></div>
+        <div class="cat-card"><div class="cat-card__head"><h4>Compliance &amp; DSGVO</h4><span class="cat-count">3</span></div><p>Outbound-DSGVO, AGB-Bausteine, Datenverarbeitung.</p></div>
       </div>
 
       <p class="text-center fade-up" style="color: rgba(255,255,255,0.45); font-size: 0.875rem; margin: 2.5rem auto 0; max-width: 38rem;">
-        Jede SOP funktioniert als strukturierter Workflow. Inputs, Prozessschritte, Ausgabeformat, Qualitäts-Frameworks und Erfolgskriterien. Alles inklusive.
+        Jeder Skill ist ein strukturierter Workflow. Inputs, Prozessschritte, Ausgabeformat, Qualitätschecks und Erfolgskriterien. Alles inklusive.
       </p>
     </div>
   </section>
@@ -1173,8 +1301,8 @@
     <div class="max-c">
       <div class="sect-h fade-up">
         <span class="pill">Preise</span>
-        <h2><span class="text-wg-grad">Einmal zahlen,</span><br /><span class="text-cyan-royal-grad">für immer nutzen</span></h2>
-        <p>Kein Abo. Einmal kaufen, in jedem Sales-Setup installieren, für immer nutzen.</p>
+        <h2><span class="text-wg-grad">Einmal zahlen,</span><br /><span class="text-cyan-royal-grad">lebenslang nutzen.</span></h2>
+        <p>Kein Abo. Keine Folgekosten. Einmal JustClawd, und Du hörst auf, monatlich für generische Posts zu zahlen.</p>
       </div>
 
       <div class="countdown-banner fade-up">
@@ -1191,8 +1319,8 @@
       </div>
 
       <div class="price-card fade-zoom">
-        <h3>JustClose</h3>
-        <p class="desc">Das komplette Vertriebssystem. SOPs, Memory, Rollen, Befehle, automatische Prüfungen. Alles drin.</p>
+        <h3>JustClawd · Starter</h3>
+        <p class="desc">Alle 60+ Skills für Sales und Marketing: LinkedIn, Cold Calling, Outreach, Content, Research, Discovery, Closing. Lifetime, IT-spezifisch.</p>
         <div class="price-row">
           <span class="price">€39</span>
           <span class="price-old">€78</span>
@@ -1200,15 +1328,14 @@
         </div>
 
         <ul class="feature-list">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>500+ Sales-SOPs in 32 Bereichen</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Langzeit-Memory über 6 Ebenen</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>9 spezialisierte Rollen mit eigenem Gedächtnis</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>21 Slash-Befehle</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>8 automatische Prüfungen (Pipeline-Health und Logging)</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Selbstlernende Wissensdatenbank</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Tägliche Workflow-Rituale (/start, /sync, /end-day)</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Funktioniert mit Close, HubSpot, Salesforce und Pipedrive</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Ein-Klick-Setup. Sofort einsatzbereit.</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>60+ Skills für LinkedIn, Cold Outreach, Content und Discovery</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>21 Slash-Befehle für tägliche Workflows</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>200+ Templates auf Deutsch. Keine Übersetzungen.</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>IT-spezifisch. Gebaut für IT-Dienstleister, Software-Häuser, Systemhäuser.</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Funktioniert mit Close, HubSpot, n8n, Make und Apollo</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Ein-Klick-Setup in unter 60 Sekunden</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>Lebenslange Updates inklusive</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4.5 4.5L20 6"/></svg>30-Tage-Geld-zurück-Garantie</li>
         </ul>
 
         <div style="display: flex; justify-content: center;">
@@ -1234,7 +1361,7 @@
         </div>
         <div class="trust-icons__item">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Kein Risiko. Jederzeit per E-Mail melden.</span>
+          <span>Kein Risiko. 30 Tage Geld zurück.</span>
         </div>
       </div>
     </div>
@@ -1252,60 +1379,63 @@
 
       <div class="faq-list">
         <details class="faq" open>
-          <summary><span>Kann mein ganzes Sales-Team JustClose nutzen?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Ja. Eine Lizenz, alle Sales-Rollen. Vom BDR bis zum Head-of-Sales arbeiten alle mit denselben SOPs, Befehlen und Memory-Strukturen.</div>
+          <summary><span>Brauche ich Claude oder Claude Code, um das zu nutzen?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Ja. JustClawd sind Skills, die Du in Claude (Desktop oder Cowork) oder Claude Code installierst. Wir liefern Dir die Installation mit. Wenn Du noch kein Claude hast, helfen wir Dir beim Setup. Ein Pro-Abo für 20 € pro Monat reicht für den Start.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Ist das ein Abo?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Nein. Einmal zahlen, für immer nutzen. Klare Pakete, ein Festpreis, keine versteckten Folgekosten.</div>
+          <summary><span>Bin ich nicht zu unspezifisch? Mein IT-Geschäft ist anders.</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Alle Skills sind für IT-Dienstleister, Software-Entwickler und Systemhäuser im DACH-Raum gebaut. Du kannst sie an Deine Nische anpassen: ICP-Definition, Sprache, Voice. Die Basis funktioniert in jedem IT-Geschäftsmodell.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Werden meine Sales-Daten an Dritte gesendet?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Nein. Wir arbeiten in Deinem Stack, Deine Daten bleiben dort. Alle SOPs sind tool-agnostisch und DSGVO-konform.</div>
+          <summary><span>Wie viel Zeit muss ich investieren, bis das funktioniert?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Setup: 60 Sekunden. Erste Posts auf LinkedIn: 30 Minuten. Erste echte Anfrage: typischerweise 3 bis 6 Wochen, wenn Du dranbleibst.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Bekomme ich Updates?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Ja. Neue SOPs und Templates landen automatisch in Deinem System. Keine manuellen Migrationen.</div>
+          <summary><span>Ist das ein Abo?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Nein. 39 € einmalig. Lifetime-Zugang inklusive aller Updates.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Was genau bekomme ich nach dem Kauf?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Zugang zum kompletten System: 500+ SOPs in 32 Bereichen, alle Befehle, Rollen-Templates, Prüfungs-Checklists und Memory-Strukturen.</div>
+          <summary><span>Was unterscheidet das von kostenlosen Templates oder Prompt-Sammlungen?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Kostenlose Templates sind Einzeldateien ohne Kontext. JustClawd ist ein zusammenhängendes System aus Skills, die ineinandergreifen. Plus IT-Inhaber-Voice. Plus deutsche Sprache. Plus Updates.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Kann ich JustClose auch nutzen, wenn ich kein Sales-Profi bin?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Ja. Genau dafür ist das System gebaut. Jede SOP hat Input, Schritte, Output und Erfolgskriterien. Du folgst dem Workflow, auch ohne 10 Jahre Sales-Erfahrung.</div>
+          <summary><span>Was, wenn es bei mir nicht funktioniert?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">30 Tage Geld zurück. Ohne Wenn und Aber, ohne Begründung, ohne Diskussion.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Ich brauche keine 200 SOPs. Lohnt sich das trotzdem?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Niemand nutzt am Anfang alle 200. Du nutzt 15 bis 20 SOPs aus 3 bis 4 Bereichen, die für Deine Wachstumsphase relevant sind. Der Rest steht bereit, sobald Du dahin kommst.</div>
+          <summary><span>Brauche ich technisches Know-how, um die Skills zu installieren?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Du musst eine Datei downloaden und in einen Claude-Ordner ziehen. Mehr nicht. Wir liefern ein 2-Minuten-Video dazu.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Was, wenn ich Hilfe beim Einrichten brauche?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Schreib uns. Wir helfen beim Setup Deines CRM, Deiner Outbound-Sequenzen und Reportings. Dein Team arbeitet ab Tag 1 produktiv im neuen System.</div>
+          <summary><span>Was, wenn ich eine Agentur habe? Kann ich JustClawd parallel nutzen?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Ja. Viele Kunden nutzen JustClawd für die Skills, die ihre Agentur nicht gut hinbekommt. Typischerweise LinkedIn-Content und Cold-Outreach. Die Agentur macht weiter, was sie gut kann. Oder Du sparst Dir das Geld komplett.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Kann ich es in mehreren Vertriebsteams nutzen?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Ja. Eine Lizenz, alle Teams. Vom Inside-Sales bis zum Channel-Vertrieb, alles abgedeckt durch dieselben SOPs und Befehle.</div>
+          <summary><span>Kommen neue Skills dazu?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Ja. Wir veröffentlichen 4 bis 6 neue Skills pro Monat. Lebenslange Updates inklusive.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Wird es mein bestehendes Sales-Setup kaputt machen?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Nein. Wir installieren neben dem Bestehenden. Keine Konflikte, keine erzwungene Datenmigration. Wir adaptieren die SOPs an Deinen aktuellen Stack.</div>
+          <summary><span>Funktioniert das auch für Solo-Selbstständige?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Ja. Tatsächlich sind die Skills für 1- bis 15-Personen-IT-Betriebe ideal. Wenn Du allein bist und 80 % codest, ist JustClawd die fehlenden 20 % Marketing und Sales.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Was unterscheidet JustClose von kostenlosen Sales-Templates?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Kostenlose Templates sind Single-Files ohne Zusammenhang. JustClose ist ein zusammenhängendes System. SOPs, Befehle, Rollen, Prüfungen und Memory greifen ineinander.</div>
+          <summary><span>Was, wenn ich Hilfe beim Anpassen brauche?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Schreib uns an hello@justclose.de. Wir helfen mit Setup, ICP-Anpassung und Deinen ersten Workflows.</div>
         </details>
+
         <details class="faq">
-          <summary><span>Wie lange dauert die Einrichtung?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Unter 60 Sekunden für das Grund-Setup. Erste messbare Effekte (Pipeline-Klarheit, Reply-Rates) typischerweise ab Woche 3.</div>
-        </details>
-        <details class="faq">
-          <summary><span>Was, wenn es bei mir nicht funktioniert?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Wir bleiben, bis es funktioniert. Im Erstgespräch definieren wir, was „funktioniert" konkret heißt. Qualifizierte Leads, Reply-Rates, Pipeline-Coverage. Daran messen wir uns.</div>
-        </details>
-        <details class="faq">
-          <summary><span>Funktioniert es mit Apollo, Lemlist oder Smartlead?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <div class="faq-body">Ja. Unsere Outbound-SOPs sind tool-agnostisch. Wir nutzen, was Du bereits hast, oder schlagen die passende Auswahl für Deinen Use-Case vor.</div>
+          <summary><span>Was ist mit DSGVO?</span><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+          <div class="faq-body">Alle Outreach-Skills haben DSGVO-Hinweise eingebaut. Cold-Email-Sequenzen sind so designt, dass sie DSGVO-konform sind, solange Du den Empfehlungen folgst.</div>
         </details>
       </div>
     </div>
@@ -1318,10 +1448,10 @@
                 background: radial-gradient(circle, rgba(77,151,254,0.22) 0%, transparent 60%);"></div>
     <div class="max-c" style="position: relative; max-width: 44rem;">
       <h2 class="fade-up" style="font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 1.5rem;">
-        <span class="text-wg-grad">Hör auf zu hoffen.</span><br />
-        <span class="text-cyan-royal-grad">Fang an zu liefern.</span>
+        <span class="text-wg-grad">Hör auf, monatlich für nichts zu zahlen.</span><br />
+        <span class="text-cyan-royal-grad">39 €, und Du hast Deine Vertriebs-Maschine.</span>
       </h2>
-      <p class="fade-up" style="color: var(--jc-blue-300); font-size: 0.92rem; margin-bottom: 2rem;">Launch-Preis. 50 % Rabatt endet bald.</p>
+      <p class="fade-up" style="color: var(--jc-blue-300); font-size: 0.92rem; margin-bottom: 2rem;">Lifetime-Zugang. 30 Tage Geld zurück.</p>
       <div class="fade-up" style="display: flex; justify-content: center;">
         <div class="huly-cta-wrap">
           <span class="huly-cta-wrap__halo"></span>
@@ -1333,7 +1463,7 @@
         </div>
       </div>
       <p class="fade-up" style="color: rgba(255,255,255,0.45); font-size: 0.78rem; margin-top: 1.25rem;">
-        Eine Zahlung. Lebenslanger Zugang.
+        39 € einmalig. Lebenslang. Kein Abo.
       </p>
     </div>
   </section>
@@ -1342,10 +1472,10 @@
   <footer class="footer">
     <div class="footer__inner">
       <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 600; color: #fff;">
-        <img src="logo.png" alt="JustClose" style="height: 24px; width: auto;"
+        <img src="logo.png" alt="JustClawd" style="height: 24px; width: auto;"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block'; this.nextElementSibling.nextElementSibling.style.display='inline';" />
         <span class="site-header__logo-dot" style="display:none;"></span>
-        <span style="display:none;">JustClose</span>
+        <span style="display:none;">JustClawd</span>
       </div>
       <nav>
         <a href="#features">Features</a>
@@ -1355,7 +1485,7 @@
         <a href="#">Impressum</a>
         <a href="#">Datenschutz</a>
       </nav>
-      <div style="font-size: 0.78rem;">© 2026 JustClose. Sales-System für IT &amp; Software.</div>
+      <div style="font-size: 0.78rem;">© 2026 JustClose · JustClawd · Skills für IT-Vertrieb</div>
     </div>
   </footer>
 
@@ -1493,18 +1623,20 @@
       }
 
       const lines = [
-        { type: 'kv', label: 'L1 deal',        value: '✓ flüchtig' },
-        { type: 'kv', label: 'L2 account',     value: '✓ persistent' },
-        { type: 'kv', label: 'L3 stakeholder', value: '✓ verlinkt' },
-        { type: 'kv', label: 'L4 pipeline',    value: '✓ live' },
-        { type: 'kv', label: 'L5 forecast',    value: '✓ historisch' },
-        { type: 'kv', label: 'L6 audit',       value: '✓ revisionssicher' },
-        { type: 'group', heading: 'Rollen aktiv',
-          items: ['bdr', 'ae', 'csm', 'sales-ops', 'rev-ops', 'enabler', 'closer', 'champion', 'auditor'] },
-        { type: 'group', heading: '12 Sales-Bereiche bereit',
-          items: ['outbound', 'discovery', 'closing', 'crm', 'forecasting', 'ai-automation',
-                  'csm', 'hiring', 'coaching', 'marketing-sync', 'compliance', 'tools'] },
-        { type: 'prompt', text: 'Bereit. Was baust Du heute?' },
+        { type: 'kv', label: 'icp scan',       value: '✓ IT-Dienstleister DACH' },
+        { type: 'kv', label: 'linkedin',       value: '✓ Skill aktiv' },
+        { type: 'kv', label: 'cold outreach',  value: '✓ Sequenz bereit' },
+        { type: 'kv', label: 'content engine', value: '✓ läuft' },
+        { type: 'kv', label: 'lead research',  value: '✓ Apollo verbunden' },
+        { type: 'kv', label: 'follow-up',      value: '✓ automatisiert' },
+        { type: 'group', heading: 'Skills geladen',
+          items: ['linkedin-profil', 'post-writer', 'cold-email', 'connection-dm', 'discovery-prep',
+                  'icp-finder', 'content-kalender', 'objection-handler', 'follow-up-bot'] },
+        { type: 'group', heading: '12 Bereiche bereit',
+          items: ['linkedin', 'outbound', 'content', 'icp', 'leads',
+                  'discovery', 'closing', 'follow-up', 'ads', 'website',
+                  'automation', 'reporting'] },
+        { type: 'prompt', text: 'Bereit. Welche Anfrage gewinnst Du heute?' },
         { type: 'cursor' }
       ];
 
